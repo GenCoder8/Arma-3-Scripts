@@ -54,6 +54,8 @@ chartCtrls = [];
 _chartPos = ctrlPosition _chart;
 _xStart = (_chartPos # 0);
 _yStart = (_chartPos # 1);
+_chartWidth = (_chartPos # 2);
+_chartHeight = (_chartPos # 3);
 
 _step = STEP_X;
 
@@ -65,7 +67,7 @@ _maxShown = numStepsToShow;
 if(_maxShown >= (count _fline)) then { _maxShown = count _fline - 1; };
 
 
-_step = (_chartPos # 2) / _maxShown;
+_step = _chartWidth / _maxShown;
 
 
 _prevLineY = 0;
@@ -101,7 +103,7 @@ _lastY = 0;
 
 // _valueReal = _valueReal / 10;
 
-_value = [_valueReal,_minMax # 0, _minMax # 1, 0.0, CHART_HEIGHT - 0.05] call getValueInRange;
+_value = [_valueReal,_minMax # 0, _minMax # 1, 0.0, _chartHeight - 0.05] call getValueInRange;
 
 _value = _value * -1;
 
@@ -112,7 +114,7 @@ if(_forEachIndex > 0) then
 {
 
 
-_sy = _yStart + _prevLineY + CHART_HEIGHT;
+_sy = _yStart + _prevLineY + _chartHeight;
 _sx = _xStart + _curLineX;
 
 // diag_log format [">>> %1 %2 %3 %4",_sx, _sy, _step, _curLineY - _prevLineY];
@@ -124,7 +126,7 @@ _lineCtrl ctrlCommit 0;
 chartCtrls pushback _lineCtrl;
 
 _lastValue = _valueReal;
-_lastY = _yStart + _curLineY + CHART_HEIGHT;
+_lastY = _yStart + _curLineY + _chartHeight;
 
 /*
 _pos1 = [_xStart + _cx, _yStart + _prevY + 0.1];
