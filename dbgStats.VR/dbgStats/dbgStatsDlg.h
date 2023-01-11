@@ -29,6 +29,8 @@ $[
 
 
 
+#include "dbgDefines.h"
+
 
 
 
@@ -316,7 +318,7 @@ class RscSlider_1900: RscSlider
 };
 class ChartArea: RscPicture
 {
-	 w = CHART_WIDTH;
+	 w = CHART_WIDTH + 0.2;
 	 h = CHART_HEIGHT;
 
 	idc = 1200;

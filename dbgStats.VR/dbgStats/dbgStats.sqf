@@ -1,4 +1,4 @@
-#include "dlgDefines.h"
+#include "dbgDefines.h"
 
 
 
@@ -219,6 +219,6 @@ terminate dbgStatsUpdate;
 };
 
 
-_h = execvm "chart.sqf";
+_h = execvm "dbgStats\chart.sqf";
 waituntil { scriptdone _h };
 

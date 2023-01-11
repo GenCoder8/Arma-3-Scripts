@@ -2,7 +2,7 @@
 _h = execvm "deps.sqf";
 waituntil { scriptdone _h };
 
-_h = execvm "dbgStats.sqf";
+_h = execvm "dbgStats\dbgStats.sqf";
 waituntil { scriptdone _h };
 
 [east,west,resistance] call dbgSetCountedSides;

@@ -4,8 +4,4 @@ import RscProgress;
 #include "gridDefines.h"
 #include "parent.h"
 
-#include "dlgDefines.h"
-
-#include "chart.h"
-
-#include "dbgStatsDlg.h"
+#include "dbgStats\dbgStatsDlg.h"

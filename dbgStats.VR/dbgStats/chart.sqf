@@ -1,5 +1,4 @@
-#include "dlgDefines.h"
-#include "chart.h"
+#include "dbgDefines.h"
 
 #define MAKE_COLOR(r,g,b,a) [r / 255,g / 255,b / 255,a / 255]
 
@@ -66,7 +65,7 @@ _maxShown = numStepsToShow;
 if(_maxShown >= (count _fline)) then { _maxShown = count _fline - 1; };
 
 
-_step = CHART_WIDTH / _maxShown;
+_step = (_chartPos # 2) / _maxShown;
 
 
 _prevLineY = 0;

@@ -1,4 +1,7 @@
 
+#define DBGSTATSDLG 1234543
+
+
 #define MAX_CHART_STEPS 5
 #define STEP_X 0.05
 
