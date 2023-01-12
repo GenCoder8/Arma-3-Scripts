@@ -21,3 +21,6 @@ maxStrengthPerSide = 100;
 sleep 0.1;
 
 call openDbgStatsDlg;
+
+call chartBeginRecording;
+

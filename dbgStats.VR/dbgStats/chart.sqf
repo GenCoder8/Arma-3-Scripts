@@ -196,26 +196,14 @@ _display = findDisplay DBGSTATSDLG;
 
 };
 
-showChart =
+chartBeginRecording =
 {
-
-_display = findDisplay DBGSTATSDLG;
-//_chart = _display displayctrl 1200;
-
-_stepsSlider = _display displayctrl 1900;
-
-_stepsSlider sliderSetSpeed [1, 10, 1];
-_stepsSlider sliderSetRange [0, 100];
-
-_stepsSlider sliderSetPosition numStepsToShow;
-
 
 chartHandle = [] spawn
 {
 
 while { true } do
 {
-
 
  {
   _x params ["_name","_code"];
@@ -240,5 +228,21 @@ while { true } do
 };
 
 };
+
+};
+
+showChart =
+{
+
+_display = findDisplay DBGSTATSDLG;
+//_chart = _display displayctrl 1200;
+
+_stepsSlider = _display displayctrl 1900;
+
+_stepsSlider sliderSetSpeed [1, 10, 1];
+_stepsSlider sliderSetRange [0, 100];
+
+_stepsSlider sliderSetPosition numStepsToShow;
+
 
 };
