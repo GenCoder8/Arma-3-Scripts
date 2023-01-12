@@ -1,6 +1,13 @@
 #include "dbgDefines.h"
 
 
+getDbgStatsCtrlIdc =
+{
+ params ["_ctrlName"];
+
+ getNumber (missionConfigFile >> "DbgStatsDialog" >> "controls" >> _ctrlName >> "idc");
+
+};
 
 // maxStrengthPerSide = 0;
 
