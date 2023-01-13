@@ -43,6 +43,9 @@ chartCtrls = [];
 chartUpdate =
 {
 _display = findDisplay DBGSTATSDLG;
+
+if(isnull _display) exitWith {}; // If dlg not open
+
 _chart = _display displayctrl 1200;
 
 { ctrlDelete _x } foreach chartCtrls;
@@ -192,7 +195,7 @@ chartSliderChange =
 
 _display = findDisplay DBGSTATSDLG;
 
-(_display displayctrl 1013) ctrlSetText format ["N: %1", numStepsToShow];
+(_display displayctrl 1013) ctrlSetText format ["Num steps to show: %1", numStepsToShow];
 
 };
 
@@ -231,7 +234,8 @@ while { true } do
 
 };
 
-showChart =
+// Init chart
+chartInit =
 {
 
 _display = findDisplay DBGSTATSDLG;
@@ -244,5 +248,6 @@ _stepsSlider sliderSetRange [0, 100];
 
 _stepsSlider sliderSetPosition numStepsToShow;
 
+[_stepsSlider,numStepsToShow] call chartSliderChange; // Init like this
 
 };

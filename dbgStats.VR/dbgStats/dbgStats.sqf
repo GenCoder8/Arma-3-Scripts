@@ -1,12 +1,11 @@
 #include "dbgDefines.h"
 
 
-getDbgStatsCtrlIdc =
+getDbgStatsIdc =
 {
  params ["_ctrlName"];
 
- getNumber (missionConfigFile >> "DbgStatsDialog" >> "controls" >> _ctrlName >> "idc");
-
+ getNumber (missionConfigFile >> "DbgStatsDialog" >> "controls" >> _ctrlName >> "idc")
 };
 
 // maxStrengthPerSide = 0;
@@ -73,7 +72,7 @@ responseScript = [] spawn
  };
 };
 
- call showChart;
+ call chartInit;
 
 };
 
