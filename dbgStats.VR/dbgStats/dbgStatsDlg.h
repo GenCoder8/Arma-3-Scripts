@@ -1,4 +1,4 @@
-/* #Hybaba
+/* #Gosyfi
 $[
 	1.063,
 	["dbgStats",[["safezoneX","safezoneY","safezoneW","safeZoneH"],"5 * 0.5 * pixelW * pixelGrid","5 * 0.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
@@ -21,11 +21,13 @@ $[
 	[1010,"",[2,"Num  spawned groups",["18 * UI_GRID_W + UI_GRID_X","17 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1011,"",[2,"Num  empty groups",["18 * UI_GRID_W + UI_GRID_X","18 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1012,"",[2,"Num All groups",["33 * UI_GRID_W + UI_GRID_X","16.5 * UI_GRID_H + UI_GRID_Y","8.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1900,"",[2,"",["39.5 * UI_GRID_W + UI_GRID_X","8 * UI_GRID_H + UI_GRID_Y","11.5 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[" onSliderPosChanged = |_this call chartSliderChange|;"]],
+	[1900,"ChartNumShown",[2,"",["39.5 * UI_GRID_W + UI_GRID_X","8 * UI_GRID_H + UI_GRID_Y","11.5 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[" onSliderPosChanged = |_this call chartSliderChange|;"]],
 	[1200,"ChartArea",[2,"#(argb,8,8,3)color(1,1,1,0.3)",["41.5 * UI_GRID_W + UI_GRID_X","11.5 * UI_GRID_H + UI_GRID_Y","11 * UI_GRID_W","14 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[" w = CHART_WIDTH;"," h = CHART_HEIGHT;"]],
-	[1013,"",[2,"Show num chart",["40.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1013,"ChartNumShownText",[2,"Show num chart",["40.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
+
 
 
 
@@ -127,7 +129,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Hybaba)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Gosyfi)
 ////////////////////////////////////////////////////////
 
 class RscFrame_1800: RscFrame
@@ -306,7 +308,7 @@ class RscText_1012: RscText
 	w = 8.5 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
 };
-class RscSlider_1900: RscSlider
+class ChartNumShown: RscSlider
 {
 	 onSliderPosChanged = "_this call chartSliderChange";
 
@@ -318,7 +320,7 @@ class RscSlider_1900: RscSlider
 };
 class ChartArea: RscPicture
 {
-	 w = CHART_WIDTH + 0.2;
+	 w = CHART_WIDTH;
 	 h = CHART_HEIGHT;
 
 	idc = 1200;
@@ -326,7 +328,7 @@ class ChartArea: RscPicture
 	x = 41.5 * UI_GRID_W + UI_GRID_X;
 	y = 11.5 * UI_GRID_H + UI_GRID_Y;
 };
-class RscText_1013: RscText
+class ChartNumShownText: RscText
 {
 	idc = 1013;
 	text = "Show num chart"; //--- ToDo: Localize;
@@ -338,7 +340,6 @@ class RscText_1013: RscText
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////
-
 
 
 };

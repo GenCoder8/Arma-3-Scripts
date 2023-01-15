@@ -195,7 +195,7 @@ chartSliderChange =
 
 _display = findDisplay DBGSTATSDLG;
 
-(_display displayctrl 1013) ctrlSetText format ["Num steps to show: %1", numStepsToShow];
+("ChartNumShownText" call getDbgStatsCtrl) ctrlSetText format ["Num steps to show: %1", numStepsToShow];
 
 };
 
@@ -241,7 +241,7 @@ chartInit =
 _display = findDisplay DBGSTATSDLG;
 //_chart = _display displayctrl 1200;
 
-_stepsSlider = _display displayctrl 1900;
+_stepsSlider = "ChartNumShown" call getDbgStatsCtrl;
 
 _stepsSlider sliderSetSpeed [1, 10, 1];
 _stepsSlider sliderSetRange [0, 100];

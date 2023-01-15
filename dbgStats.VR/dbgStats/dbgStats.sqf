@@ -8,6 +8,17 @@ getDbgStatsIdc =
  getNumber (missionConfigFile >> "DbgStatsDialog" >> "controls" >> _ctrlName >> "idc")
 };
 
+getDbgStatsCtrl =
+{
+ params ["_ctrlName"];
+
+ private _idc = _ctrlName call getDbgStatsIdc;
+
+ private _display = findDisplay DBGSTATSDLG;
+
+ _display displayctrl _idc
+};
+
 // maxStrengthPerSide = 0;
 
 #define DEBUGABLE_SIDES [east,west,resistance,civilian]
