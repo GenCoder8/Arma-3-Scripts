@@ -46,7 +46,7 @@ _display = findDisplay DBGSTATSDLG;
 
 if(isnull _display) exitWith {}; // If dlg not open
 
-_chart = _display displayctrl 1200;
+_chart = "ChartArea" call getDbgStatsCtrl;
 
 { ctrlDelete _x } foreach chartCtrls;
 chartCtrls = [];
@@ -237,9 +237,7 @@ while { true } do
 // Init chart
 chartInit =
 {
-
 _display = findDisplay DBGSTATSDLG;
-//_chart = _display displayctrl 1200;
 
 _stepsSlider = "ChartNumShown" call getDbgStatsCtrl;
 

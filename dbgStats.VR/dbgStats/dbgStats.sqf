@@ -198,6 +198,21 @@ if(dbgSelectedSide < (count armySizes)) then
  ctrlSetText [1011,format["Num  empty groups: %1", (count _allGroups) - _numSpawnedGroups]];
 
   // ctrlSetText [1011,format[" %1 / %2", count allgroups]];
+
+
+_fpsText = "FPStext" call getDbgStatsCtrl;
+_fpsStr = "FPS: ";
+
+ if(fpsShowing) then
+ {
+  _fpsStr = _fpsStr + format["Server: %1 ", lastServerFPS];
+ };
+
+ _fpsStr = _fpsStr + format["Client: %1 ", round diag_fps];
+
+_fpsText ctrlSetText _fpsStr;
+  
+
 };
 
 dbgSelectSide = 
@@ -217,8 +232,18 @@ toggleShowFPS =
  fpsShowing = !fpsShowing;
  
  fpsShowing remoteExec ["toggleFPSServer",2];
+
+ ("ShowServerFPS" call getDbgStatsCtrl) ctrlSetText (["Show FPS","Hide Server FPS"] select fpsShowing);
  
- ctrlSetText [1601,["Show FPS","Hide FPS"] select fpsShowing];
+};
+
+ lastServerFPS = 0;
+
+serverReportingFPS =
+{
+ params ["_serverFPS"];
+
+ lastServerFPS = _serverFPS;
 };
 
 closeDbgStatsDlg =
@@ -237,5 +262,8 @@ terminate dbgStatsUpdate;
 
 
 _h = execvm "dbgStats\chart.sqf";
+waituntil { scriptdone _h };
+
+_h = execvm "dbgStats\server.sqf";
 waituntil { scriptdone _h };
 

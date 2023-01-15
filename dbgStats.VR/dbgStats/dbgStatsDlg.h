@@ -1,4 +1,4 @@
-/* #Hitocy
+/* #Syzeco
 $[
 	1.063,
 	["dbgStats",[["safezoneX","safezoneY","safezoneW","safeZoneH"],"5 * 0.5 * pixelW * pixelGrid","5 * 0.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
@@ -6,7 +6,7 @@ $[
 	[1801,"",[2,"All",["16 * UI_GRID_W + UI_GRID_X","14.5 * UI_GRID_H + UI_GRID_Y","16 * UI_GRID_W","14.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1201,"UsedArmyBar : RscProgress",[2,"#(argb,8,8,3)color(1,1,1,1)",["16.5 * UI_GRID_W + UI_GRID_X","10.5 * UI_GRID_H + UI_GRID_Y","11 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1600,"",[2,"Close",["29.5 * UI_GRID_W + UI_GRID_X","30 * UI_GRID_H + UI_GRID_Y","5.5 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call closeDbgStatsDlg|;"]],
-	[1000,"",[2,"Response time",["25 * UI_GRID_W + UI_GRID_X","6.5 * UI_GRID_H + UI_GRID_Y","13 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1000,"",[2,"Response time",["27.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","11.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1001,"",[2,"0 / 0",["18 * UI_GRID_W + UI_GRID_X","9 * UI_GRID_H + UI_GRID_Y","9 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1002,"",[2,"Num men spawned: 0",["17 * UI_GRID_W + UI_GRID_X","19.5 * UI_GRID_H + UI_GRID_Y","10 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1003,"",[2,"Total groups: 0",["17 * UI_GRID_W + UI_GRID_X","15.5 * UI_GRID_H + UI_GRID_Y","7.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
@@ -17,15 +17,18 @@ $[
 	[1007,"",[2,"Num air:",["18 * UI_GRID_W + UI_GRID_X","23.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1008,"",[2,"Num land:",["18 * UI_GRID_W + UI_GRID_X","24.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1009,"",[2,"Num water:",["18 * UI_GRID_W + UI_GRID_X","25.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1601,"",[2,"Show FPS",["33 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call toggleShowFPS|;"]],
+	[1601,"ShowServerFPS",[2,"Show Server FPS",["16 * UI_GRID_W + UI_GRID_X","3.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call toggleShowFPS|;"]],
 	[1010,"",[2,"Num  spawned groups",["18 * UI_GRID_W + UI_GRID_X","17 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1011,"",[2,"Num  empty groups",["18 * UI_GRID_W + UI_GRID_X","18 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1012,"",[2,"Num All groups",["33 * UI_GRID_W + UI_GRID_X","16.5 * UI_GRID_H + UI_GRID_Y","8.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1900,"ChartNumShown",[2,"",["39.5 * UI_GRID_W + UI_GRID_X","8 * UI_GRID_H + UI_GRID_Y","11.5 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[" onSliderPosChanged = |_this call chartSliderChange|;"]],
 	[1200,"ChartArea",[2,"#(argb,8,8,3)color(1,1,1,0.3)",["41.5 * UI_GRID_W + UI_GRID_X","11.5 * UI_GRID_H + UI_GRID_Y","12.5 * UI_GRID_W","14 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1013,"ChartNumShownText",[2,"Show num chart",["40.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1013,"ChartNumShownText",[2,"Show num chart",["40.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1014,"FPStext",[2,"FPS",["16 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","11 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
+
 
 
 
@@ -130,7 +133,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Hitocy)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Syzeco)
 ////////////////////////////////////////////////////////
 
 class RscFrame_1800: RscFrame
@@ -175,9 +178,9 @@ class RscText_1000: RscText
 {
 	idc = 1000;
 	text = "Response time"; //--- ToDo: Localize;
-	x = 25 * UI_GRID_W + UI_GRID_X;
-	y = 6.5 * UI_GRID_H + UI_GRID_Y;
-	w = 13 * UI_GRID_W;
+	x = 27.5 * UI_GRID_W + UI_GRID_X;
+	y = 6 * UI_GRID_H + UI_GRID_Y;
+	w = 11.5 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
 };
 class RscText_1001: RscText
@@ -271,14 +274,14 @@ class RscText_1009: RscText
 	w = 8 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
 };
-class RscButton_1601: RscButton
+class ShowServerFPS: RscButton
 {
 	action = "call toggleShowFPS";
 
 	idc = 1601;
-	text = "Show FPS"; //--- ToDo: Localize;
-	x = 33 * UI_GRID_W + UI_GRID_X;
-	y = 22.5 * UI_GRID_H + UI_GRID_Y;
+	text = "Show Server FPS"; //--- ToDo: Localize;
+	x = 16 * UI_GRID_W + UI_GRID_X;
+	y = 3.5 * UI_GRID_H + UI_GRID_Y;
 	w = 7 * UI_GRID_W;
 	h = 2 * UI_GRID_H;
 };
@@ -335,6 +338,15 @@ class ChartNumShownText: RscText
 	x = 40.5 * UI_GRID_W + UI_GRID_X;
 	y = 6 * UI_GRID_H + UI_GRID_Y;
 	w = 8 * UI_GRID_W;
+	h = 1 * UI_GRID_H;
+};
+class FPStext: RscText
+{
+	idc = 1014;
+	text = "FPS"; //--- ToDo: Localize;
+	x = 16 * UI_GRID_W + UI_GRID_X;
+	y = 6 * UI_GRID_H + UI_GRID_Y;
+	w = 11 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
 };
 ////////////////////////////////////////////////////////
