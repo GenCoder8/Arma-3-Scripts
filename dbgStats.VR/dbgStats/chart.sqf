@@ -158,7 +158,7 @@ _prevLineY = _curLineY;
 #define TEXT_HEIGHT 0.05
 
 _textCtrl = _display ctrlCreate ["ChartText", -1];
-_textCtrl ctrlSetPosition [_xStart + (MAX_CHART_STEPS - 1) * STEP_X + (_lineindex * 0.05) , _lastY - (TEXT_HEIGHT / 2) ,  0.2, TEXT_HEIGHT];
+_textCtrl ctrlSetPosition [_xStart + _chartWidth + (_lineindex * 0.05) , _lastY - (TEXT_HEIGHT / 2) ,  0.2, TEXT_HEIGHT];
 _textCtrl ctrlSetTextColor _color;
 _textCtrl ctrlSetText format["%1 %2", _lastValue, _name];
 _textCtrl ctrlCommit 0;

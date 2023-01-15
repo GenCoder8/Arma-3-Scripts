@@ -1,4 +1,4 @@
-/* #Gosyfi
+/* #Hitocy
 $[
 	1.063,
 	["dbgStats",[["safezoneX","safezoneY","safezoneW","safeZoneH"],"5 * 0.5 * pixelW * pixelGrid","5 * 0.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
@@ -22,10 +22,11 @@ $[
 	[1011,"",[2,"Num  empty groups",["18 * UI_GRID_W + UI_GRID_X","18 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1012,"",[2,"Num All groups",["33 * UI_GRID_W + UI_GRID_X","16.5 * UI_GRID_H + UI_GRID_Y","8.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1900,"ChartNumShown",[2,"",["39.5 * UI_GRID_W + UI_GRID_X","8 * UI_GRID_H + UI_GRID_Y","11.5 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[" onSliderPosChanged = |_this call chartSliderChange|;"]],
-	[1200,"ChartArea",[2,"#(argb,8,8,3)color(1,1,1,0.3)",["41.5 * UI_GRID_W + UI_GRID_X","11.5 * UI_GRID_H + UI_GRID_Y","11 * UI_GRID_W","14 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[" w = CHART_WIDTH;"," h = CHART_HEIGHT;"]],
+	[1200,"ChartArea",[2,"#(argb,8,8,3)color(1,1,1,0.3)",["41.5 * UI_GRID_W + UI_GRID_X","11.5 * UI_GRID_H + UI_GRID_Y","12.5 * UI_GRID_W","14 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1013,"ChartNumShownText",[2,"Show num chart",["40.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
 
 
 
@@ -129,7 +130,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Gosyfi)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Hitocy)
 ////////////////////////////////////////////////////////
 
 class RscFrame_1800: RscFrame
@@ -320,13 +321,12 @@ class ChartNumShown: RscSlider
 };
 class ChartArea: RscPicture
 {
-	 w = CHART_WIDTH;
-	 h = CHART_HEIGHT;
-
 	idc = 1200;
 	text = "#(argb,8,8,3)color(1,1,1,0.3)";
 	x = 41.5 * UI_GRID_W + UI_GRID_X;
 	y = 11.5 * UI_GRID_H + UI_GRID_Y;
+	w = 12.5 * UI_GRID_W;
+	h = 14 * UI_GRID_H;
 };
 class ChartNumShownText: RscText
 {
