@@ -103,12 +103,12 @@ dbgIsCountedSide =
 
 dbgGetAllMen =
 {
- allunits select { _x == (vehicle _x) && (side _x) call dbgIsCountedSide };
+ allunits select { _x == (vehicle _x) && (side _x) call dbgIsCountedSide && !isplayer _x };
 };
 
 dbgGetAllVehicles =
 {
- vehicles select { (side _x) call dbgIsCountedSide };
+ vehicles select { (side _x) call dbgIsCountedSide && !isplayer (driver _x) };
 };
 
 isVehicleDriveable =
