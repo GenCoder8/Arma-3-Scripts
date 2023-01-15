@@ -264,6 +264,3 @@ terminate dbgStatsUpdate;
 _h = execvm "dbgStats\chart.sqf";
 waituntil { scriptdone _h };
 
-_h = execvm "dbgStats\server.sqf";
-waituntil { scriptdone _h };
-

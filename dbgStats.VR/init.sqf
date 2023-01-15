@@ -1,4 +1,15 @@
 
+if(isServer) then
+{
+
+_h = execvm "dbgStats\server.sqf";
+waituntil { scriptdone _h };
+
+};
+
+if(!hasInterface) exitWith {};
+
+
 _h = execvm "deps.sqf";
 waituntil { scriptdone _h };
 

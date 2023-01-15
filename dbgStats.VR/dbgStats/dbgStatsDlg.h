@@ -1,11 +1,11 @@
-/* #Syzeco
+/* #Javuki
 $[
 	1.063,
 	["dbgStats",[["safezoneX","safezoneY","safezoneW","safeZoneH"],"5 * 0.5 * pixelW * pixelGrid","5 * 0.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
 	[1800,"",[2,"Side",["16 * UI_GRID_W + UI_GRID_X","8 * UI_GRID_H + UI_GRID_Y","22 * UI_GRID_W","4.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1801,"",[2,"All",["16 * UI_GRID_W + UI_GRID_X","14.5 * UI_GRID_H + UI_GRID_Y","16 * UI_GRID_W","14.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1201,"UsedArmyBar : RscProgress",[2,"#(argb,8,8,3)color(1,1,1,1)",["16.5 * UI_GRID_W + UI_GRID_X","10.5 * UI_GRID_H + UI_GRID_Y","11 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1600,"",[2,"Close",["29.5 * UI_GRID_W + UI_GRID_X","30 * UI_GRID_H + UI_GRID_Y","5.5 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call closeDbgStatsDlg|;"]],
+	[1600,"",[2,"Close",["29 * UI_GRID_W + UI_GRID_X","30 * UI_GRID_H + UI_GRID_Y","6 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call closeDbgStatsDlg|;"]],
 	[1000,"",[2,"Response time",["27.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","11.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1001,"",[2,"0 / 0",["18 * UI_GRID_W + UI_GRID_X","9 * UI_GRID_H + UI_GRID_Y","9 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1002,"",[2,"Num men spawned: 0",["17 * UI_GRID_W + UI_GRID_X","19.5 * UI_GRID_H + UI_GRID_Y","10 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
@@ -20,13 +20,13 @@ $[
 	[1601,"ShowServerFPS",[2,"Show Server FPS",["16 * UI_GRID_W + UI_GRID_X","3.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call toggleShowFPS|;"]],
 	[1010,"",[2,"Num  spawned groups",["18 * UI_GRID_W + UI_GRID_X","17 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1011,"",[2,"Num  empty groups",["18 * UI_GRID_W + UI_GRID_X","18 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1012,"",[2,"Num All groups",["33 * UI_GRID_W + UI_GRID_X","16.5 * UI_GRID_H + UI_GRID_Y","8.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1900,"ChartNumShown",[2,"",["39.5 * UI_GRID_W + UI_GRID_X","8 * UI_GRID_H + UI_GRID_Y","11.5 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[" onSliderPosChanged = |_this call chartSliderChange|;"]],
 	[1200,"ChartArea",[2,"#(argb,8,8,3)color(1,1,1,0.3)",["41.5 * UI_GRID_W + UI_GRID_X","11.5 * UI_GRID_H + UI_GRID_Y","12.5 * UI_GRID_W","14 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1013,"ChartNumShownText",[2,"Show num chart",["40.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1014,"FPStext",[2,"FPS",["16 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","11 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
 
 
 
@@ -133,7 +133,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Syzeco)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Javuki)
 ////////////////////////////////////////////////////////
 
 class RscFrame_1800: RscFrame
@@ -169,9 +169,9 @@ class RscButton_1600: RscButton
 
 	idc = 1600;
 	text = "Close"; //--- ToDo: Localize;
-	x = 29.5 * UI_GRID_W + UI_GRID_X;
+	x = 29 * UI_GRID_W + UI_GRID_X;
 	y = 30 * UI_GRID_H + UI_GRID_Y;
-	w = 5.5 * UI_GRID_W;
+	w = 6 * UI_GRID_W;
 	h = 2 * UI_GRID_H;
 };
 class RscText_1000: RscText
@@ -301,15 +301,6 @@ class RscText_1011: RscText
 	x = 18 * UI_GRID_W + UI_GRID_X;
 	y = 18 * UI_GRID_H + UI_GRID_Y;
 	w = 9.5 * UI_GRID_W;
-	h = 1 * UI_GRID_H;
-};
-class RscText_1012: RscText
-{
-	idc = 1012;
-	text = "Num All groups"; //--- ToDo: Localize;
-	x = 33 * UI_GRID_W + UI_GRID_X;
-	y = 16.5 * UI_GRID_H + UI_GRID_Y;
-	w = 8.5 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
 };
 class ChartNumShown: RscSlider
