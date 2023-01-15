@@ -174,17 +174,19 @@ if(dbgSelectedSide < (count armySizes)) then
  
  _spawnedVehText ctrlSetText format["Spawned vehicles: %1 (%2)", count _driveableVehs, { _x call _isPlayerUnit } count _driveableVehs];
  
- ctrlSetText [1005,format["Vehicles in use: %1" , count _usedVehs ]];
+ (_display displayCtrl 1005) ctrlSetText format["Vehicles in use: %1" , count _usedVehs ];
  
  _air = _driveableVehs select { _x isKindof "Air" };
- ctrlSetText [1007,format["Num air: %1 / %2", {alive (driver _x)} count _air , count _air]];
+ (_display displayCtrl 1007) ctrlSetText format["Num air: %1 / %2", {alive (driver _x)} count _air , count _air];
+
  _land = _driveableVehs select { _x isKindof "land" };
- ctrlSetText [1008,format["Num land: %1 / %2", {alive (driver _x)} count _land , count _land]];
+ (_display displayCtrl 1008) ctrlSetText format["Num land: %1 / %2", {alive (driver _x)} count _land , count _land];
+
  _ship = _driveableVehs select { _x isKindof "Ship" };
- ctrlSetText [1009,format["Num water: %1 / %2", {alive (driver _x)} count _ship , count _ship]];
+ (_display displayCtrl 1009) ctrlSetText format["Num water: %1 / %2", {alive (driver _x)} count _ship , count _ship];
  
  
- ctrlSetText [1006,format["Static weapons: %1" ,_numStaticWeaps]];
+ (_display displayCtrl 1006) ctrlSetText format["Static weapons: %1" ,_numStaticWeaps];
  
  _allGroups = allgroups select { (side _x) call _countTheseSides };
 
@@ -193,9 +195,9 @@ if(dbgSelectedSide < (count armySizes)) then
  _numGroupsText ctrlSetText format["Total groups: %1 / %2", count _allGroups, 288 ];
 
 
- ctrlSetText [1010,format["Num  spawned groups: %1", _numSpawnedGroups]];
+ (_display displayCtrl 1010) ctrlSetText format["Num  spawned groups: %1", _numSpawnedGroups];
 
- ctrlSetText [1011,format["Num  empty groups: %1", (count _allGroups) - _numSpawnedGroups]];
+ (_display displayCtrl 1011) ctrlSetText format["Num  empty groups: %1", (count _allGroups) - _numSpawnedGroups];
 
   // ctrlSetText [1011,format[" %1 / %2", count allgroups]];
 
