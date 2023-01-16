@@ -6,3 +6,5 @@ It shows the current number of AI men and vehicles and also has a chart that sho
 
 It also displays other things such as server FPS
 
+NOTE: To put this script into your mission requires some level of scripting knowledge
+
