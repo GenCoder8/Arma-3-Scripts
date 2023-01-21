@@ -133,7 +133,7 @@ dbgUpdate =
  
  if(dbgSelectedSide >= 0) then
  {
-  _countSides = [DEBUGABLE_SIDES # dbgSelectedSide ];
+  _countSides = [DEBUGABLE_SIDES # dbgSelectedSide];
  };
 
  _countSides call dbgSetCountedSides;
@@ -165,6 +165,9 @@ if(!isnil "maxStrengthPerSide") then
  _usedArmyStrength progressSetPosition (_usedArmyS / maxStrengthPerSide);
  
  _usedStrengthText ctrlSetText format["Used strength: %1 / %2",  _usedArmyS, maxStrengthPerSide];
+
+ _usedArmyStrength ctrlShow true;
+ _usedStrengthText ctrlShow true;
 }
 else
 {
@@ -174,7 +177,7 @@ else
 
  _allMen = call dbgGetAllMen;
 
- _spawnedInfText ctrlSetText format["Spawned infantry: %1 (%2)",  count _allMen, { _x call _isPlayerUnit } count _allMen];
+ _spawnedInfText ctrlSetText format["Spawned infantry: %1 (%2)", count _allMen, { _x call _isPlayerUnit } count _allMen];
 
  _allVehs = call dbgGetAllVehicles;
 
