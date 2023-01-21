@@ -19,7 +19,6 @@ getDbgStatsCtrl =
  _display displayctrl _idc
 };
 
-// maxStrengthPerSide = 0;
 
 #define DEBUGABLE_SIDES [east,west,resistance,civilian]
 
@@ -45,7 +44,7 @@ dbgStatsUpdate = [] spawn
   _sidesCtrl lbadd (str _x);
  } foreach DEBUGABLE_SIDES; // must be same order as in getSideIndex
  
- dbgSelectedSide = 0;
+ dbgSelectedSide = -1;
  
  _sidesCtrl lbSetCurSel 0;
 
@@ -132,9 +131,9 @@ dbgUpdate =
 
  _countSides = [];
  
- if(dbgSelectedSide > 0) then
+ if(dbgSelectedSide >= 0) then
  {
-  _countSides = [DEBUGABLE_SIDES # (dbgSelectedSide - 1) ];
+  _countSides = [DEBUGABLE_SIDES # dbgSelectedSide ];
  };
 
  _countSides call dbgSetCountedSides;
@@ -152,15 +151,27 @@ _isPlayerUnit =
 };
  
 _usedArmyS = 0;
-if(dbgSelectedSide < (count armySizes)) then
+
+if(!isnil "armySizes") then
+{
+if(dbgSelectedSide >= 0 && dbgSelectedSide < (count armySizes)) then
 {
  _usedArmyS = armySizes select dbgSelectedSide;
 };
+};
 
+if(!isnil "maxStrengthPerSide") then
+{
  _usedArmyStrength progressSetPosition (_usedArmyS / maxStrengthPerSide);
  
  _usedStrengthText ctrlSetText format["Used strength: %1 / %2",  _usedArmyS, maxStrengthPerSide];
- 
+}
+else
+{
+ _usedArmyStrength ctrlShow false;
+ _usedStrengthText ctrlShow false;
+};
+
  _allMen = call dbgGetAllMen;
 
  _spawnedInfText ctrlSetText format["Spawned infantry: %1 (%2)",  count _allMen, { _x call _isPlayerUnit } count _allMen];
@@ -221,7 +232,7 @@ dbgSelectSide =
 {
  params ["_control", "_selectedIndex"];
  
- dbgSelectedSide = _selectedIndex;
+ dbgSelectedSide = _selectedIndex - 1;
  
  call dbgUpdate;
 };
