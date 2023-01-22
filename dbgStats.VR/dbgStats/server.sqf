@@ -1,9 +1,4 @@
 
-targetClients =
-{
- ([0,-2] select isdedicated)
-};
-
 toggleFPSServer =
 {
 params ["_on"];

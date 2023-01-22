@@ -1,3 +1,9 @@
+targetClients =
+{
+ ([0,-2] select isdedicated)
+};
+
+
 getAngle = 
 {
 private ["_angle","_p1","_x1","_y1","_p2","_x2","_y2"];
