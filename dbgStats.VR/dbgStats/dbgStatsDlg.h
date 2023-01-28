@@ -1,4 +1,4 @@
-/* #Javuki
+/* #Jivobe
 $[
 	1.063,
 	["dbgStats",[["safezoneX","safezoneY","safezoneW","safeZoneH"],"5 * 0.5 * pixelW * pixelGrid","5 * 0.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
@@ -8,15 +8,15 @@ $[
 	[1600,"",[2,"Close",["29 * UI_GRID_W + UI_GRID_X","30 * UI_GRID_H + UI_GRID_Y","6 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call closeDbgStatsDlg|;"]],
 	[1000,"",[2,"Response time",["27.5 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","11.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1001,"",[2,"0 / 0",["18 * UI_GRID_W + UI_GRID_X","9 * UI_GRID_H + UI_GRID_Y","9 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1002,"",[2,"Num men spawned: 0",["17 * UI_GRID_W + UI_GRID_X","19.5 * UI_GRID_H + UI_GRID_Y","10 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1002,"",[2,"Num men spawned: 0",["17 * UI_GRID_W + UI_GRID_X","19.5 * UI_GRID_H + UI_GRID_Y","10 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"All infantry (Player infantry)","-1"],[]],
 	[1003,"",[2,"Total groups: 0",["17 * UI_GRID_W + UI_GRID_X","15.5 * UI_GRID_H + UI_GRID_Y","7.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1004,"",[2,"Num veh spawned: 0",["17 * UI_GRID_W + UI_GRID_X","21 * UI_GRID_H + UI_GRID_Y","10 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1004,"",[2,"Num veh spawned: 0",["17 * UI_GRID_W + UI_GRID_X","21 * UI_GRID_H + UI_GRID_Y","10 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"All vehicles (Player vehicles)","-1"],[]],
 	[2100,"",[2,"",["28.5 * UI_GRID_W + UI_GRID_X","10 * UI_GRID_H + UI_GRID_Y","9 * UI_GRID_W","1.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["onLBSelChanged = |call dbgSelectSide|;"]],
 	[1005,"",[2,"Vehs in use:",["18 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","6 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1006,"",[2,"Static weapons:",["17.5 * UI_GRID_W + UI_GRID_X","27 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1007,"",[2,"Num air:",["18 * UI_GRID_W + UI_GRID_X","23.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1008,"",[2,"Num land:",["18 * UI_GRID_W + UI_GRID_X","24.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1009,"",[2,"Num water:",["18 * UI_GRID_W + UI_GRID_X","25.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1007,"",[2,"Num air:",["18 * UI_GRID_W + UI_GRID_X","23.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"In use / Total","-1"],[]],
+	[1008,"",[2,"Num land:",["18 * UI_GRID_W + UI_GRID_X","24.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"In use / Total","-1"],[]],
+	[1009,"",[2,"Num water:",["18 * UI_GRID_W + UI_GRID_X","25.5 * UI_GRID_H + UI_GRID_Y","8 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"In use / Total","-1"],[]],
 	[1601,"ShowServerFPS",[2,"Show Server FPS",["16 * UI_GRID_W + UI_GRID_X","3.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call toggleShowFPS|;"]],
 	[1010,"",[2,"Num  spawned groups",["18 * UI_GRID_W + UI_GRID_X","17 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1011,"",[2,"Num  empty groups",["18 * UI_GRID_W + UI_GRID_X","18 * UI_GRID_H + UI_GRID_Y","9.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
@@ -133,7 +133,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Javuki)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Jivobe)
 ////////////////////////////////////////////////////////
 
 class RscFrame_1800: RscFrame
@@ -200,6 +200,7 @@ class RscText_1002: RscText
 	y = 19.5 * UI_GRID_H + UI_GRID_Y;
 	w = 10 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
+	tooltip = "All infantry (Player infantry)"; //--- ToDo: Localize;
 };
 class RscText_1003: RscText
 {
@@ -218,6 +219,7 @@ class RscText_1004: RscText
 	y = 21 * UI_GRID_H + UI_GRID_Y;
 	w = 10 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
+	tooltip = "All vehicles (Player vehicles)"; //--- ToDo: Localize;
 };
 class RscCombo_2100: RscCombo
 {
@@ -255,6 +257,7 @@ class RscText_1007: RscText
 	y = 23.5 * UI_GRID_H + UI_GRID_Y;
 	w = 8 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
+	tooltip = "In use / Total"; //--- ToDo: Localize;
 };
 class RscText_1008: RscText
 {
@@ -264,6 +267,7 @@ class RscText_1008: RscText
 	y = 24.5 * UI_GRID_H + UI_GRID_Y;
 	w = 8 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
+	tooltip = "In use / Total"; //--- ToDo: Localize;
 };
 class RscText_1009: RscText
 {
@@ -273,6 +277,7 @@ class RscText_1009: RscText
 	y = 25.5 * UI_GRID_H + UI_GRID_Y;
 	w = 8 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
+	tooltip = "In use / Total"; //--- ToDo: Localize;
 };
 class ShowServerFPS: RscButton
 {
