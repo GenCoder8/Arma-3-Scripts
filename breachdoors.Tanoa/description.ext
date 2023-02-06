@@ -1,0 +1,20 @@
+
+enableDebugConsole = 2;
+
+class CfgFunctions
+{
+ class DoorBreach
+ {
+  class InitFns
+  {
+
+   class BreachInit
+   {
+    file = "breachInitClient.sqf";
+	preInit = 1;
+   };
+   
+   };
+ };   
+};
+
