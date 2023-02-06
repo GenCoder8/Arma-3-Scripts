@@ -20,8 +20,7 @@ contains door breaching by explosives and other means
 
 
 
-### These scripts are WIP (Work in progress)
-
+### These scripts are WIP (Work in progress) 
 
 NOTE: To put these scripts into your mission requires some level of scripting knowledge
 
