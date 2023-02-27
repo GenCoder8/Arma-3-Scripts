@@ -16,7 +16,9 @@ It also displays other things such as server FPS
 contains door breaching by explosives and other means
 
 
+## <b>getGroupCfgs.VR</b>
 
+Allow grabbing of group configs
 
 
 
