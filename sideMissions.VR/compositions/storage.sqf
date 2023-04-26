@@ -1,0 +1,1 @@
+private ["_objs"];  _objs = [["Land_WaterTank_F",[-2.83398,0.872559,0],0,1,0],["Land_Cargo10_military_green_F",[0.556641,0.979736,0],0,1,0],["Land_CanisterFuel_F",[1.67505,-0.812256,0],90,1,0],["Land_WoodenCrate_01_F",[0.601807,-1.04053,0],90,1,0]];  _objs

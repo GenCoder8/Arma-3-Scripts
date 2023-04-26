@@ -1,0 +1,4 @@
+
+#include "sideMissions\missions.h"
+
+enableDebugConsole = 1;
