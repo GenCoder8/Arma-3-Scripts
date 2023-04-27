@@ -12,6 +12,8 @@ class MissionBase
  removeActions = false;
  
  targetsMax = 0;
+
+ createGuards = true;
  
  destinationFn = "isBaseNear";
  
@@ -52,6 +54,8 @@ class RescuePilot : MissionBase
  
  targetsMax = "1";
  targetTypes[] = {"B_Fighter_Pilot_F"};
+
+ createGuards = false;
  
  start = "[] call smSetupRescuableMen";
  loop = "call smTakeControlTargets";

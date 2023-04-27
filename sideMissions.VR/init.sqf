@@ -34,7 +34,11 @@ if(isServer) then
 {
  // Creates side missions for players of side west
  
- [getmarkerpos "misCap",west,"RescuePilot"] call startSideMission;
+//[getmarkerpos "misCap",west,"RescuePilot"] call startSideMission;
+
+[getmarkerpos "misCap",west,"FreeCaptives"] call startSideMission;
+
+// [getmarkerpos "off",west,"CaptureOfficer"] call startSideMission;
 
 //[getmarkerpos "misCap",west,"FreeCaptives"] call startSideMission;
 /*

@@ -21,9 +21,16 @@ startSideMission =
  
  _compobjs = [];
  
- private _defenderSet = [_misSide,_misPos] call onSideMissionDefenderCreate;
+ private _defenderSet = []; 
  private _enemySide = civilian;
  private _groups = [];
+
+if(getNumber(_misConf >> "createGuards") == 1) then
+{
+ //hint "Creating guards";
+_defenderSet = [_misSide,_misPos] call onSideMissionDefenderCreate;
+};
+
  if(count _defenderSet > 0) then
  {
   _enemySide = _defenderSet # 0;

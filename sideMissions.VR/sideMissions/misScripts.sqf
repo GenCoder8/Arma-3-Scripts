@@ -139,11 +139,10 @@ smSetupRescuableMen =
 {
 
 {
+private _man = _x;
 
-_x setCaptive true;
-_x disableAI "TARGET";
-_x disableAI "AUTOTARGET";
-
+_man setCaptive true;
+[_man,true] call smFreezeMan;
 
 } foreach curMisTargets;
 
@@ -152,14 +151,13 @@ _x disableAI "AUTOTARGET";
 smRescueMen =
 {
  {
-  _captive = _x;
+ private _man = _x;
 
  // Enable the disabled AI features in smSetupRescuableMen
- _captive setCaptive false;
- _captive enableAI "TARGET";
- _captive enableAI "AUTOTARGET";
+ _man setCaptive false;
+ [_man,false] call smFreezeMan;
 
- [_captive] joinSilent _nearPlr; 
+ [_man] joinSilent _nearPlr; 
 
  } foreach curMisTargets;
   
@@ -171,8 +169,7 @@ smSetupOfficers =
 {
 
 _x setCaptive true;
-_x disableAI "TARGET";
-_x disableAI "AUTOTARGET";
+[_x,true] call smFreezeMan;
 
 removeAllWeapons _x;
 
@@ -182,9 +179,31 @@ removeAllWeapons _x;
 
 smArrestOfficer =
 {
+
+// Remain as captive...
+{
+[_x,false] call smFreezeMan;
+} foreach curMisTargets;
+
 curMisTargets joinSilent _nearPlr;
 };
 
+smFreezeMan =
+{
+ params ["_man","_freeze"];
+
+if(_freeze) then
+{
+_man disableAI "TARGET";
+_man disableAI "AUTOTARGET";
+}
+else
+{
+ _man enableAI "TARGET";
+ _man enableAI "AUTOTARGET";
+};
+
+};
 
 smGetCurMissionGroup =
 {
