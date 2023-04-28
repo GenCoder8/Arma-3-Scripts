@@ -20,6 +20,8 @@ It also displays other things such as server FPS
 
 contains door breaching by explosives and other means
 
+(Not fully implemented due to HitParts EH limitations)
+
 
 ## <b>getGroupCfgs.VR</b>
 
