@@ -1,5 +1,10 @@
 # Arma-3-Scripts
 
+## <b>airTraffic.Altis</b> 
+
+Shows nearest airfield and disallows auto landing if runway is busy
+
+
 ## <b>dbgStats.VR</b> 
 
 contains scripts to help measuring lag due to AI units in the mission
@@ -20,6 +25,10 @@ contains door breaching by explosives and other means
 
 Allow grabbing of group configs
 
+
+## <b>sideMissions.VR</b>
+
+Allows simple tasks in mission
 
 
 ### These scripts are WIP (Work in progress) 
