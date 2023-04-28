@@ -153,6 +153,9 @@ smRescueMen =
  {
  private _man = _x;
 
+ removeHeadgear _man;
+ removeAllWeapons _man; // No high tech weapons
+
  // Enable the disabled AI features in smSetupRescuableMen
  _man setCaptive false;
  [_man,false] call smFreezeMan;
