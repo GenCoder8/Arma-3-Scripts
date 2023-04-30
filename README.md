@@ -1,4 +1,4 @@
-# Arma-3-Scripts
+# Arma 3 Scripts
 
 ## <b>airTraffic.Altis</b> 
 
