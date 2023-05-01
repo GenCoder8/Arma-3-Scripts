@@ -280,7 +280,7 @@ if(getNumber (_misConf >> "targetIsDefender") == 1) then
  _targetSide = _enemySide;
 };
 
-_misGroup = createGroup _targetSide;
+_misGroup = _targetSide call createGroupLogged;
 
 if(count _targetTypes > 0) then
 {

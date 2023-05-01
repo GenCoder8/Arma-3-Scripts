@@ -27,6 +27,10 @@ getPlayers =
 };
 
 
+createGroupLogged =
+{
+ createGroup _this;
+};
 
 deleteGroupInstantly =
 {
