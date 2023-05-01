@@ -36,11 +36,14 @@ if(isServer) then
  
 //[getmarkerpos "misCap",west,"RescuePilot"] call startSideMission;
 
-[getmarkerpos "misCap",west,"FreeCaptives"] call startSideMission;
+//[getmarkerpos "misCap",west,"FreeCaptives"] call startSideMission;
 
 // [getmarkerpos "off",west,"CaptureOfficer"] call startSideMission;
 
 //[getmarkerpos "misCap",west,"FreeCaptives"] call startSideMission;
+
+//[getmarkerpos "misLaptop",west,"AccessComputer"] call startSideMission;
+
 /*
 [getmarkerpos "misLaptop",west,"AccessComputer"] call startSideMission;
 [getmarkerpos "misRadar",west,"DestroyRadar"] call startSideMission;
