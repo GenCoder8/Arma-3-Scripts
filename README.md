@@ -1,4 +1,9 @@
-# Arma-3-Scripts
+# Arma 3 Scripts
+
+## <b>airTraffic.Altis</b> 
+
+Shows nearest airfield and disallows auto landing if runway is busy
+
 
 ## <b>dbgStats.VR</b> 
 
@@ -15,11 +20,17 @@ It also displays other things such as server FPS
 
 contains door breaching by explosives and other means
 
+(Not fully implemented due to HitParts EH limitations)
+
 
 ## <b>getGroupCfgs.VR</b>
 
 Allow grabbing of group configs
 
+
+## <b>sideMissions.VR</b>
+
+Allows simple tasks in mission
 
 
 ### These scripts are WIP (Work in progress) 
