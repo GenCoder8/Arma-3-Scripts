@@ -36,6 +36,8 @@ params ["_slider", "_newValue"];
 
 (_slider getVariable "vdnum") ctrlSetText format["%1",_newValue];
 
+setViewdistance _newValue;
+
 hintSilent str _this 
 }];
 

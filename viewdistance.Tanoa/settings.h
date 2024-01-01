@@ -1,5 +1,5 @@
 
-/* #Videwe
+/* #Kavaqe
 $[
 	1.063,
 	["settings",[["safezoneX","safezoneY","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
@@ -13,13 +13,14 @@ $[
 	[1003,"ViewDistPlaneNum",[2,"10000",["44.5 * UI_GRID_W + UI_GRID_X","8 * UI_GRID_H + UI_GRID_Y","6.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1004,"ViewDistHeliNum",[2,"10000",["44.5 * UI_GRID_W + UI_GRID_X","11 * UI_GRID_H + UI_GRID_Y","6.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1005,"ViewDistGroundNum",[2,"10000",["44.5 * UI_GRID_W + UI_GRID_X","14 * UI_GRID_H + UI_GRID_Y","6.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1006,"",[2,"overallVisibility",["32 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","16.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1006,"",[2,"overallVisibility",["33 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","14 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[2800,"",[2,"",["15.5 * UI_GRID_W + UI_GRID_X","5.5 * UI_GRID_H + UI_GRID_Y","2 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1007,"",[2,"Use custom view distance",["18 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","7.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1007,"",[2,"Use custom view distance",["18 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","10 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1800,"",[2,"",["15.5 * UI_GRID_W + UI_GRID_X","7.5 * UI_GRID_H + UI_GRID_Y","33 * UI_GRID_W","9 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1601,"",[2,"Close",["16.5 * UI_GRID_W + UI_GRID_X","26 * UI_GRID_H + UI_GRID_Y","7.5 * UI_GRID_W","3.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |false call settingsClose|;"]]
 ]
 */
+
 
 
 
@@ -67,7 +68,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Videwe)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Kavaqe)
 ////////////////////////////////////////////////////////
 
 class ViewDistPlane: RscSlider
@@ -163,9 +164,9 @@ class RscText_1006: RscText
 {
 	idc = 1006;
 	text = "overallVisibility"; //--- ToDo: Localize;
-	x = 32 * UI_GRID_W + UI_GRID_X;
+	x = 33 * UI_GRID_W + UI_GRID_X;
 	y = 6 * UI_GRID_H + UI_GRID_Y;
-	w = 16.5 * UI_GRID_W;
+	w = 14 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
 };
 class RscCheckbox_2800: RscCheckbox
@@ -182,7 +183,7 @@ class RscText_1007: RscText
 	text = "Use custom view distance"; //--- ToDo: Localize;
 	x = 18 * UI_GRID_W + UI_GRID_X;
 	y = 6 * UI_GRID_H + UI_GRID_Y;
-	w = 7.5 * UI_GRID_W;
+	w = 10 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
 };
 class RscFrame_1800: RscFrame
