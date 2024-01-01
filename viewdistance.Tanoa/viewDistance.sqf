@@ -11,11 +11,17 @@ createdialog "SettingsDlg";
 
 _display = findDisplay SETTINGSDLG;
 
-viewDistanePlane = 3000;
-viewDistaneHeli =  2000;
-viewDistaneGround = 1500;
+viewDistanePlane = profilenamespace getVariable ["customViewdistancePlane", 3000];
+viewDistaneHeli =  profilenamespace getVariable ["customViewdistanceHeli", 2000];
+viewDistaneGround = profilenamespace getVariable ["customViewdistanceGround", 1500];
+
+_active = profilenamespace getVariable ["useCustomViewdistance", true];
 
 _maxViewDistance = getVideoOptions get "overallVisibility";
+
+(_display displayCtrl 1006) ctrlSetText format ["Overall visibility: %1",_maxViewDistance];
+
+(_display displayCtrl 2800) cbSetChecked _active;
 
 _setupViewDistCtrls =
 {
@@ -72,6 +78,9 @@ settingsClose =
 _display = findDisplay SETTINGSDLG;
 
 
+if(_apply) then
+{
+
 _readInViewDistance =
 {
  params ["_sliderId","_numId","_vdVal"];
@@ -87,6 +96,16 @@ missionnamespace setVariable [_vdVal,_sliderPos];
 [1900,1003,"viewDistanePlane"] call _readInViewDistance;
 [1901,1004,"viewDistaneHeli"] call _readInViewDistance;
 [1902,1005,"viewDistaneGround"] call _readInViewDistance;
+
+profilenamespace setVariable ["useCustomViewdistance", cbChecked (_display displayCtrl 2800) ];
+
+profilenamespace setVariable ["customViewdistancePlane", viewDistanePlane];
+profilenamespace setVariable ["customViewdistanceHeli", viewDistaneHeli];
+profilenamespace setVariable ["customViewdistanceGround", viewDistaneGround];
+
+saveProfileNamespace; 
+
+};
 
 call updateViewDistance;
 

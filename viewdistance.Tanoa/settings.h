@@ -1,5 +1,5 @@
 
-/* #Kifedi
+/* #Nokuwa
 $[
 	1.063,
 	["settings",[["safezoneX","safezoneY","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
@@ -12,9 +12,14 @@ $[
 	[1600,"",[2,"Close",["41 * UI_GRID_W + UI_GRID_X","27 * UI_GRID_H + UI_GRID_Y","7.5 * UI_GRID_W","3.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |true call settingsClose|;"]],
 	[1003,"ViewDistPlaneNum",[2,"10000",["45 * UI_GRID_W + UI_GRID_X","6.5 * UI_GRID_H + UI_GRID_Y","6.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1004,"ViewDistHeliNum",[2,"10000",["45 * UI_GRID_W + UI_GRID_X","9 * UI_GRID_H + UI_GRID_Y","6.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1005,"ViewDistGroundNum",[2,"10000",["45 * UI_GRID_W + UI_GRID_X","11.5 * UI_GRID_H + UI_GRID_Y","6.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1005,"ViewDistGroundNum",[2,"10000",["45 * UI_GRID_W + UI_GRID_X","11.5 * UI_GRID_H + UI_GRID_Y","6.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1006,"",[2,"overallVisibility",["32 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","16.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[2800,"",[2,"",["15.5 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","2 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1007,"",[2,"Use custom view distance",["18 * UI_GRID_W + UI_GRID_X","3.5 * UI_GRID_H + UI_GRID_Y","7.5 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1800,"",[2,"",["15.5 * UI_GRID_W + UI_GRID_X","5.5 * UI_GRID_H + UI_GRID_Y","33 * UI_GRID_W","11 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
 
 
 
@@ -60,7 +65,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Kifedi)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Nokuwa)
 ////////////////////////////////////////////////////////
 
 class ViewDistPlane: RscSlider
@@ -151,6 +156,40 @@ class ViewDistGroundNum: RscText
 	y = 11.5 * UI_GRID_H + UI_GRID_Y;
 	w = 6.5 * UI_GRID_W;
 	h = 1 * UI_GRID_H;
+};
+class RscText_1006: RscText
+{
+	idc = 1006;
+	text = "overallVisibility"; //--- ToDo: Localize;
+	x = 32 * UI_GRID_W + UI_GRID_X;
+	y = 3 * UI_GRID_H + UI_GRID_Y;
+	w = 16.5 * UI_GRID_W;
+	h = 1 * UI_GRID_H;
+};
+class RscCheckbox_2800: RscCheckbox
+{
+	idc = 2800;
+	x = 15.5 * UI_GRID_W + UI_GRID_X;
+	y = 3 * UI_GRID_H + UI_GRID_Y;
+	w = 2 * UI_GRID_W;
+	h = 2 * UI_GRID_H;
+};
+class RscText_1007: RscText
+{
+	idc = 1007;
+	text = "Use custom view distance"; //--- ToDo: Localize;
+	x = 18 * UI_GRID_W + UI_GRID_X;
+	y = 3.5 * UI_GRID_H + UI_GRID_Y;
+	w = 7.5 * UI_GRID_W;
+	h = 1 * UI_GRID_H;
+};
+class RscFrame_1800: RscFrame
+{
+	idc = 1800;
+	x = 15.5 * UI_GRID_W + UI_GRID_X;
+	y = 5.5 * UI_GRID_H + UI_GRID_Y;
+	w = 33 * UI_GRID_W;
+	h = 11 * UI_GRID_H;
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
