@@ -1,6 +1,8 @@
 
 #define SETTINGSDLG 1234567
 
+#define MAX_VIEW_DIST 5000
+
 
 settingsOpen =
 {
@@ -12,6 +14,8 @@ _display = findDisplay SETTINGSDLG;
 viewDistanePlane = 3000;
 viewDistaneHeli =  2000;
 viewDistaneGround = 1500;
+
+_maxViewDistance = getVideoOptions get "overallVisibility";
 
 _setupViewDistCtrls =
 {
@@ -31,7 +35,24 @@ hintSilent str _this
 
 private _sliderValue = (missionnamespace getVariable [_vdVal,1000]);
 
-_slider sliderSetRange [0, 10000];
+private _maxVal = _maxViewDistance;
+
+if(_maxVal > MAX_VIEW_DIST) then
+{
+ _maxVal = MAX_VIEW_DIST;
+};
+
+if(_sliderValue > MAX_VIEW_DIST) then
+{
+ _sliderValue = MAX_VIEW_DIST;
+};
+
+if(_sliderValue > _maxViewDistance) then
+{
+_sliderValue = _maxViewDistance;
+};
+
+_slider sliderSetRange [200, _maxVal];
 _slider sliderSetSpeed [100, 1000, 100];
 _slider sliderSetPosition _sliderValue;
 (_slider getVariable "vdnum") ctrlSetText format["%1",_sliderValue]; // Have to init here
@@ -75,15 +96,29 @@ closeDialog 0;
 
 updateViewDistance =
 {
- _veh = vehicle player;
+ private _veh = vehicle player;
+ private _vdSet = false;
 
 if(_veh != player) then
 {
 
-}
-else
+if(_veh isKindof "Plane") then
 {
- hint format ["view dist %1", viewDistaneGround],
+ hint format ["view Plane dist %1", viewDistaneGround];
+ _vdSet = true;
+};
+
+if(_veh isKindof "Heli") then
+{
+ hint format ["view Heli dist %1", viewDistaneGround];
+ _vdSet = true;
+};
+
+};
+
+if(!_vdSet) then
+{
+ hint format ["view Ground dist %1", viewDistaneGround];
 };
 
 };
