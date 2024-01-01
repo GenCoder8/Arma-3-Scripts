@@ -260,3 +260,6 @@ GCGClose =
  (uiNamespace getVariable 'gcgDisp') closeDisplay 0;
 };
 
+
+sleep 1;
+call openGetGroupsDlg;
