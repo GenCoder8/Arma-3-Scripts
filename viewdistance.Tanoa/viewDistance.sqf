@@ -118,6 +118,10 @@ updateViewDistance =
  private _veh = vehicle player;
  private _vdSet = false;
 
+// If enabled
+if(profilenamespace getVariable ["useCustomViewdistance", false]) then
+{
+
 if(_veh != player) then
 {
 
@@ -139,6 +143,13 @@ if(!_vdSet) then
 {
  hint format ["view Ground dist %1", viewDistaneGround];
 };
+
+}
+else
+{
+ setViewdistance -1;
+};
+
 
 };
 
