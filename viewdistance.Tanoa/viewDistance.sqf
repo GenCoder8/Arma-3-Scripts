@@ -118,7 +118,7 @@ closeDialog 0;
 updateViewDistance =
 {
  private _veh = vehicle player;
- private _vdSet = false;
+ private _vdSet = 0;
 
 // If enabled
 if(profilenamespace getVariable ["useCustomViewdistance", false]) then
@@ -130,21 +130,24 @@ if(_veh != player) then
 if(_veh isKindof "Plane") then
 {
  hint format ["view Plane dist %1", viewDistaneGround];
- _vdSet = true;
+ _vdSet = viewDistaneGround;
 };
 
 if(_veh isKindof "Heli") then
 {
  hint format ["view Heli dist %1", viewDistaneGround];
- _vdSet = true;
+ _vdSet = viewDistaneGround;
 };
 
 };
 
-if(!_vdSet) then
+if(_vdSet == 0) then
 {
  hint format ["view Ground dist %1", viewDistaneGround];
+ _vdSet = viewDistaneGround;
 };
+
+setViewdistance _vdSet;
 
 }
 else

@@ -1,5 +1,5 @@
 
-/* #Kavaqe
+/* #Typive
 $[
 	1.063,
 	["settings",[["safezoneX","safezoneY","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
@@ -17,9 +17,10 @@ $[
 	[2800,"",[2,"",["15.5 * UI_GRID_W + UI_GRID_X","5.5 * UI_GRID_H + UI_GRID_Y","2 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1007,"",[2,"Use custom view distance",["18 * UI_GRID_W + UI_GRID_X","6 * UI_GRID_H + UI_GRID_Y","10 * UI_GRID_W","1 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
 	[1800,"",[2,"",["15.5 * UI_GRID_W + UI_GRID_X","7.5 * UI_GRID_H + UI_GRID_Y","33 * UI_GRID_W","9 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1601,"",[2,"Close",["16.5 * UI_GRID_W + UI_GRID_X","26 * UI_GRID_H + UI_GRID_Y","7.5 * UI_GRID_W","3.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |false call settingsClose|;"]]
+	[1601,"",[2,"Cancel",["16.5 * UI_GRID_W + UI_GRID_X","26 * UI_GRID_H + UI_GRID_Y","7.5 * UI_GRID_W","3.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |false call settingsClose|;"]]
 ]
 */
+
 
 
 
@@ -68,7 +69,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Kavaqe)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Typive)
 ////////////////////////////////////////////////////////
 
 class ViewDistPlane: RscSlider
@@ -199,7 +200,7 @@ class RscButton_1601: RscButton
 	action = "false call settingsClose";
 
 	idc = 1601;
-	text = "Close"; //--- ToDo: Localize;
+	text = "Cancel"; //--- ToDo: Localize;
 	x = 16.5 * UI_GRID_W + UI_GRID_X;
 	y = 26 * UI_GRID_H + UI_GRID_Y;
 	w = 7.5 * UI_GRID_W;
