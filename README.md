@@ -33,6 +33,16 @@ Allow grabbing of group configs
 Allows simple tasks in mission
 
 
+## <b>viewdistance.Tanoa</b>
+
+Settings dialog to change the view distance
+
+
+## <b>destruct.VR</b>
+
+Project to make barrier objects destructible
+
+
 ### These scripts are WIP (Work in progress) 
 
 NOTE: To put these scripts into your mission requires some level of scripting knowledge
