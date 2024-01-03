@@ -3,8 +3,8 @@
 
 #define MAX_VIEW_DIST 5000
 
-viewDistanePlane = profilenamespace getVariable ["customViewdistancePlane", 3000];
-viewDistaneHeli =  profilenamespace getVariable ["customViewdistanceHeli", 2000];
+viewDistanePlane = profilenamespace getVariable ["customViewdistancePlane", 3500];
+viewDistaneHeli =  profilenamespace getVariable ["customViewdistanceHeli", 2500];
 viewDistaneGround = profilenamespace getVariable ["customViewdistanceGround", 1500];
 
 settingsMsg =
@@ -17,22 +17,22 @@ settingsOpen =
 
 createdialog "SettingsDlg";
 
-_display = findDisplay SETTINGSDLG;
+private _display = findDisplay SETTINGSDLG;
 
 
-_active = profilenamespace getVariable ["useCustomViewdistance", true];
+private _active = profilenamespace getVariable ["useCustomViewdistance", true];
 
-_maxViewDistance = getVideoOptions get "overallVisibility";
+private _maxViewDistance = getVideoOptions get "overallVisibility";
 
 (_display displayCtrl 1006) ctrlSetText format ["Overall visibility: %1",_maxViewDistance];
 
 (_display displayCtrl 2800) cbSetChecked _active;
 
-_setupViewDistCtrls =
+private _setupViewDistCtrls =
 {
  params ["_sliderId","_numId","_vdVal"];
 
-_slider = _display displayCtrl _sliderId; 
+private _slider = _display displayCtrl _sliderId; 
 _slider setVariable ["vdnum", _display displayCtrl _numId];
 
 _slider ctrlAddEventHandler ["SliderPosChanged", 
@@ -43,10 +43,10 @@ params ["_slider", "_newValue"];
 
 _newValue call setCustomViewDistance;
 
-hintSilent str _this 
+// hintSilent str _this 
 }];
 
-private _sliderValue = (missionnamespace getVariable [_vdVal,1500]);
+private _sliderValue = missionnamespace getVariable [_vdVal,1500];
 
 /*
 private _maxVal = _maxViewDistance;
@@ -85,19 +85,19 @@ settingsClose =
 {
  params [["_apply", false]];
 
-_display = findDisplay SETTINGSDLG;
+private _display = findDisplay SETTINGSDLG;
 
 
 if(_apply) then
 {
 
-_readInViewDistance =
+private _readInViewDistance =
 {
  params ["_sliderId","_numId","_vdVal"];
 
-_slider = _display displayCtrl _sliderId; 
+private _slider = _display displayCtrl _sliderId; 
 
-_sliderPos = sliderPosition _slider;
+private _sliderPos = sliderPosition _slider;
 
 missionnamespace setVariable [_vdVal,_sliderPos];
 
@@ -171,7 +171,7 @@ else
 {
  format ["view dist reset"] call settingsMsg;
 
- _objVis = getVideoOptions get "objectVisibility";
+ private _objVis = getVideoOptions get "objectVisibility";
 
  setViewdistance -1;
  setObjectViewDistance _objVis;
