@@ -41,7 +41,7 @@ params ["_slider", "_newValue"];
 
 (_slider getVariable "vdnum") ctrlSetText format["%1",_newValue];
 
-setViewdistance _newValue;
+_newValue call setCustomViewDistance;
 
 hintSilent str _this 
 }];
@@ -123,13 +123,22 @@ closeDialog 0;
 
 };
 
+setCustomViewDistance =
+{
+ params ["_vdist"];
+
+setViewdistance _vdist;
+setObjectViewDistance (ceil (_vdist * 0.75));
+
+};
+
 updateViewDistance =
 {
  private _veh = vehicle player;
  private _vdSet = 0;
 
 // If enabled
-if(profilenamespace getVariable ["useCustomViewdistance", false]) then
+if(profilenamespace getVariable ["useCustomViewdistance", true]) then
 {
 
 if(_veh != player) then
@@ -155,14 +164,17 @@ if(_vdSet == 0) then
  _vdSet = viewDistaneGround;
 };
 
-setViewdistance _vdSet;
+_vdSet call setCustomViewDistance;
 
 }
 else
 {
- hint format ["view dist reset"];
+ format ["view dist reset"] call settingsMsg;
+
+ _objVis = getVideoOptions get "objectVisibility";
 
  setViewdistance -1;
+ setObjectViewDistance _objVis;
 };
 
 
