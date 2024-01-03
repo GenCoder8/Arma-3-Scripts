@@ -7,6 +7,10 @@ viewDistanePlane = profilenamespace getVariable ["customViewdistancePlane", 3000
 viewDistaneHeli =  profilenamespace getVariable ["customViewdistanceHeli", 2000];
 viewDistaneGround = profilenamespace getVariable ["customViewdistanceGround", 1500];
 
+settingsMsg =
+{
+ hint _this;
+};
 
 settingsOpen =
 {
@@ -133,13 +137,13 @@ if(_veh != player) then
 
 if(_veh isKindof "Plane") then
 {
- hint format ["view Plane dist %1", viewDistanePlane];
+ format ["view Plane dist %1", viewDistanePlane] call settingsMsg;
  _vdSet = viewDistanePlane;
 };
 
 if(_veh isKindof "Helicopter") then
 {
- hint format ["view Heli dist %1", viewDistaneHeli];
+ format ["view Heli dist %1", viewDistaneHeli] call settingsMsg;
  _vdSet = viewDistaneHeli;
 };
 
@@ -147,7 +151,7 @@ if(_veh isKindof "Helicopter") then
 
 if(_vdSet == 0) then
 {
- hint format ["view Ground dist %1", viewDistaneGround];
+ format ["view Ground dist %1", viewDistaneGround] call settingsMsg;
  _vdSet = viewDistaneGround;
 };
 
