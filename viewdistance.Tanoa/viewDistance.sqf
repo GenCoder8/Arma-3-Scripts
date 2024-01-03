@@ -3,6 +3,10 @@
 
 #define MAX_VIEW_DIST 5000
 
+viewDistanePlane = profilenamespace getVariable ["customViewdistancePlane", 3000];
+viewDistaneHeli =  profilenamespace getVariable ["customViewdistanceHeli", 2000];
+viewDistaneGround = profilenamespace getVariable ["customViewdistanceGround", 1500];
+
 
 settingsOpen =
 {
@@ -11,9 +15,6 @@ createdialog "SettingsDlg";
 
 _display = findDisplay SETTINGSDLG;
 
-viewDistanePlane = profilenamespace getVariable ["customViewdistancePlane", 3000];
-viewDistaneHeli =  profilenamespace getVariable ["customViewdistanceHeli", 2000];
-viewDistaneGround = profilenamespace getVariable ["customViewdistanceGround", 1500];
 
 _active = profilenamespace getVariable ["useCustomViewdistance", true];
 
@@ -41,26 +42,29 @@ setViewdistance _newValue;
 hintSilent str _this 
 }];
 
-private _sliderValue = (missionnamespace getVariable [_vdVal,1000]);
+private _sliderValue = (missionnamespace getVariable [_vdVal,1500]);
 
+/*
 private _maxVal = _maxViewDistance;
 
 if(_maxVal > MAX_VIEW_DIST) then
 {
  _maxVal = MAX_VIEW_DIST;
 };
+*/
 
 if(_sliderValue > MAX_VIEW_DIST) then
 {
  _sliderValue = MAX_VIEW_DIST;
 };
 
+/*
 if(_sliderValue > _maxViewDistance) then
 {
 _sliderValue = _maxViewDistance;
-};
+};*/
 
-_slider sliderSetRange [200, _maxVal];
+_slider sliderSetRange [200, MAX_VIEW_DIST];
 _slider sliderSetSpeed [100, 1000, 100];
 _slider sliderSetPosition _sliderValue;
 (_slider getVariable "vdnum") ctrlSetText format["%1",_sliderValue]; // Have to init here
@@ -129,14 +133,14 @@ if(_veh != player) then
 
 if(_veh isKindof "Plane") then
 {
- hint format ["view Plane dist %1", viewDistaneGround];
- _vdSet = viewDistaneGround;
+ hint format ["view Plane dist %1", viewDistanePlane];
+ _vdSet = viewDistanePlane;
 };
 
-if(_veh isKindof "Heli") then
+if(_veh isKindof "Helicopter") then
 {
- hint format ["view Heli dist %1", viewDistaneGround];
- _vdSet = viewDistaneGround;
+ hint format ["view Heli dist %1", viewDistaneHeli];
+ _vdSet = viewDistaneHeli;
 };
 
 };
@@ -152,6 +156,8 @@ setViewdistance _vdSet;
 }
 else
 {
+ hint format ["view dist reset"];
+
  setViewdistance -1;
 };
 
