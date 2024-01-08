@@ -7,7 +7,11 @@ dropPieces =
 {
  params ["_center"];
 
-private _pieces = nearestObjects [_center, [], 100];
+private _pieces = (nearestObjects [_center, [], 100]) select {
+
+// Only destroyable or fallable checked
+((_x getvariable ["isDestroyable",false]) || (_x call doesObjectFall))
+};
 
 private _needsUpdate = true;
 private _maxIters = MAX_ITERS;
@@ -21,7 +25,9 @@ _maxIters = _maxIters - 1;
  private _obj = _x;
  private _pos = getposATL _obj;
 
-if(typeof _obj != "Land_HBarrier_01_line_3_green_F") then { continue; };
+if(isnull _obj) then { continue; };
+
+// if(typeof _obj != "Land_HBarrier_01_line_3_green_F") then { continue; };
 
 private _startPos = getposASL _obj;
 
@@ -47,7 +53,7 @@ _edgePos set [2,_startPos # 2];
 
  // systemchat ("_zAdd " + str _zAdd );
 
-_intersections = lineIntersectsSurfaces [_edgePos vectorAdd [0,0, + _maxHeight - Z_DOWN_VAL], _edgePos vectorAdd [0,0,-55], _obj, objnull, true, -1, "GEOM"];
+private _intersections = lineIntersectsSurfaces [_edgePos vectorAdd [0,0, + _maxHeight - Z_DOWN_VAL], _edgePos vectorAdd [0,0,-55], _obj, objnull, true, -1, "GEOM"];
 
 if(count _intersections > 0) then
 {
@@ -89,9 +95,47 @@ if(abs ((_newpos # 2) - (_curPos # 2)) < 0.1) then
  continue;
 };
 
+// if(_obj call isStaticWeapon)
+
+if(_obj == testg) then
+{
+// hint format ["found "];
+};
+
+systemchat format ["%1 %2 %3", _obj, alive _obj, isnull _obj];
+
+if(_obj call doesObjectFall) then
+{
+//systemchat "FALL";
  _obj setposATL _newpos;
 
-// _needsUpdate = true;
+_needsUpdate = true;
+}
+else
+{
+
+if(!(_obj getVariable ["markedForDel", false])) then
+{
+
+// systemchat "DEL";
+  
+
+// moveOut (gunner _obj);
+
+//deleteVehicleCrew _obj;
+
+deleteVehicle _obj;
+
+_obj setVariable ["markedForDel", true];
+
+// systemchat format ["222 %1 %2 %3", _obj, alive _obj, isnull _obj];
+
+_needsUpdate = true;
+};
+
+};
+
+
 
 };
 

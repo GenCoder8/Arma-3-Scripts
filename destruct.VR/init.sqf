@@ -9,4 +9,14 @@ barrr addEventHandler ["Killed", {
 }];
 */
 
+isStaticWeapon =
+{
+ (_this isKindof "StaticWeapon")
+};
+
+doesObjectFall =
+{
+ (getNumber ((configof _this) >> "fallable")) == 1
+};
+
 execvm "destruct.sqf";
