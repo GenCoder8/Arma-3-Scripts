@@ -158,7 +158,19 @@ if(_maxIters == 0) then
 };
 
 
+registerFallableObj =
+{
 
+_this addEventHandler ["Killed", {
+	params ["_obj", "_killer", "_instigator", "_useEffects"];
+
+ systemchat "KILLED";
+
+ [getposATL _obj] call dropPieces;
+
+}];
+
+};
 
 
 

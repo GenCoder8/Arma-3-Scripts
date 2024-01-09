@@ -1,14 +1,4 @@
 
-/*
-barrr addEventHandler ["Killed", {
-	params ["_unit", "_killer", "_instigator", "_useEffects"];
-
- systemchat "KILLED";
-
-
-}];
-*/
-
 isStaticWeapon =
 {
  (_this isKindof "StaticWeapon")
@@ -19,4 +9,20 @@ doesObjectFall =
  (getNumber ((configof _this) >> "fallable")) == 1
 };
 
-execvm "destruct.sqf";
+
+
+_h = execvm "destruct.sqf";
+waituntil { scriptdone _h };
+
+
+{
+
+if(_x call doesObjectFall) then
+{
+
+_x call registerFallableObj;
+
+};
+
+} foreach (nearestObjects [player, [], 1e10]);
+
