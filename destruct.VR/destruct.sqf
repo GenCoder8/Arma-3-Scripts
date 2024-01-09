@@ -1,6 +1,6 @@
 
 #define BELOW_OBJ_Z 0.1
-#define MAX_ITERS 1000
+#define MAX_ITERS 100
 #define Z_DOWN_VAL 0.25
 
 dropPieces =
@@ -23,9 +23,15 @@ _maxIters = _maxIters - 1;
 
 {
  private _obj = _x;
- private _pos = getposATL _obj;
 
 if(isnull _obj) then { continue; };
+
+if((_obj getVariable ["markedForDel", false])) then { continue; };
+
+
+ private _pos = getposATL _obj;
+
+
 
 // if(typeof _obj != "Land_HBarrier_01_line_3_green_F") then { continue; };
 
@@ -102,7 +108,7 @@ if(_obj == testg) then
 // hint format ["found "];
 };
 
-systemchat format ["%1 %2 %3", _obj, alive _obj, isnull _obj];
+// systemchat format ["%1 %2 %3", _obj, alive _obj, isnull _obj];
 
 if(_obj call doesObjectFall) then
 {
@@ -114,8 +120,7 @@ _needsUpdate = true;
 else
 {
 
-if(!(_obj getVariable ["markedForDel", false])) then
-{
+
 
 // systemchat "DEL";
   
@@ -131,7 +136,6 @@ _obj setVariable ["markedForDel", true];
 // systemchat format ["222 %1 %2 %3", _obj, alive _obj, isnull _obj];
 
 _needsUpdate = true;
-};
 
 };
 
