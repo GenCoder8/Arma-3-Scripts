@@ -21,6 +21,8 @@ while { _needsUpdate && _maxIters > 0 } do
 _needsUpdate = false;
 _maxIters = _maxIters - 1;
 
+sleep 2; // Some buildings take time to collapse
+
 {
  private _obj = _x;
 
@@ -146,6 +148,8 @@ _needsUpdate = true;
 
 } foreach _pieces;
 
+
+ systemchat "Fall ended";
 };
 
 
@@ -158,7 +162,7 @@ if(_maxIters == 0) then
 };
 
 
-registerFallableObj =
+registerFallTriggerObj =
 {
 
 _this addEventHandler ["Killed", {
@@ -166,7 +170,7 @@ _this addEventHandler ["Killed", {
 
  systemchat "KILLED";
 
- [getposATL _obj] call dropPieces;
+ [getposATL _obj] spawn dropPieces;
 
 }];
 
