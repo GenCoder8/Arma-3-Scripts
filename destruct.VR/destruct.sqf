@@ -35,6 +35,11 @@ if((_obj getVariable ["markedForDel", false])) then { continue; };
 
 
 
+if(_obj == testb) then
+{
+ hint "TEsted!";
+};
+
 // if(typeof _obj != "Land_HBarrier_01_line_3_green_F") then { continue; };
 
 private _startPos = getposASL _obj;
@@ -86,10 +91,11 @@ if(_heightDif > 0 && _heightDif < _smallestDif) then
 if(!isnil "_closestHeight") then
 {
 
+/*
 if(_obj == barrr_13) then
 {
  systemchat ( format["dbg %1 %2", _closestHeight, _smallestDif] );
-};
+};*/
 
  // if(_closestHeight < 0) then { _closestHeight = 0; };
 
