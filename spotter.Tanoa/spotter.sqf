@@ -1,5 +1,5 @@
 
-#define VALID_BINOCULARS ["Rangefinder","Binoculars"]
+#define VALID_BINOCULARS ["Rangefinder","Binoculars"] // order important
 
 
 spotterLoop =
@@ -11,12 +11,17 @@ private _spotter = objnull;
 while { true } do
 {
 
-private _units = (units player) select { !isplayer _x };
+if(alive player && !([player,false] call inVehicle)) then
+{
 
+private _units = (units player) select { !isplayer _x && !([_x,false] call inVehicle) };
+
+// Get men with binoculars or rangefinder
 private _spotters = _units select 
 {
 private _man = _x;
 private _has = false;
+
 {
  if(_man hasWeapon  _x) exitwith { _has = true; };
 } foreach VALID_BINOCULARS;
@@ -52,6 +57,8 @@ _has
  {
   _curTarget = objNull;
  };
+
+};
 
  sleep 1;
 };
