@@ -3,6 +3,7 @@
 #define MAX_ITERS 100
 #define Z_DOWN_VAL 0.25
 
+
 dropPieces =
 {
  params ["_center"];
@@ -37,7 +38,7 @@ if((_obj getVariable ["markedForDel", false])) then { continue; };
 
 if(_obj == testb) then
 {
- hint "TEsted!";
+ hint "Tested!";
 };
 
 // if(typeof _obj != "Land_HBarrier_01_line_3_green_F") then { continue; };
@@ -155,13 +156,13 @@ _needsUpdate = true;
 } foreach _pieces;
 
 
- systemchat "Fall ended";
+// systemchat "Fall ended";
 };
 
 
 if(_maxIters == 0) then
 {
- systemchat "Max iters reached!";
+ systemchat "Max destruct iters reached!";
 };
 
 
@@ -174,7 +175,7 @@ registerFallTriggerObj =
 _this addEventHandler ["Killed", {
 	params ["_obj", "_killer", "_instigator", "_useEffects"];
 
- systemchat "KILLED";
+ // systemchat "KILLED";
 
  [getposATL _obj] spawn dropPieces;
 
@@ -183,6 +184,10 @@ _this addEventHandler ["Killed", {
 };
 
 
+
+
+if(!isnil "barrr_13") then // Debug
+{
 
 onEachFrame
 {
@@ -208,3 +213,4 @@ _edgePos set [2,_startPos # 2];
 
 };
 
+};
