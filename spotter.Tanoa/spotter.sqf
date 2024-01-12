@@ -23,7 +23,7 @@ private _man = _x;
 private _has = false;
 
 {
- if(_man hasWeapon  _x) exitwith { _has = true; };
+ if(_man hasWeapon _x) exitwith { _has = true; };
 } foreach VALID_BINOCULARS;
 
 _has
@@ -48,7 +48,13 @@ _has
   if(_curTarget != cursortarget) then
   {
    _curTarget = cursortarget;
-   _spotter sidechat format ["Target %1 meters", round (player distance _curTarget) ];
+
+   private _dist = round (player distance _curTarget);
+
+   if(_dist > 100) then
+   {
+   _spotter sidechat format ["Target %1 meters", _dist ];
+   };
 
    sleep 2;
   };
