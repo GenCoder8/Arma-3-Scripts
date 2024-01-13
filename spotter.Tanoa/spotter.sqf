@@ -14,10 +14,15 @@ while { true } do
 if(alive player && !([player,false] call inVehicle)) then
 {
 
+private _spotters = [];
+
+if(cameraView == "gunner" && (player getVariable ["isSniperScope",false]) && alive cursortarget && cursortarget iskindof "CAManBase") then
+{
+
 private _units = (units player) select { !isplayer _x && !([_x,false] call inVehicle) };
 
 // Get men with binoculars or rangefinder
-private _spotters = _units select 
+ _spotters = _units select 
 {
 private _man = _x;
 private _has = false;
@@ -29,12 +34,14 @@ private _has = false;
 _has
 };
 
+};
+
 // _spotter selectWeapon "Binoculars";
 
  // hintsilent format ["> %1 %2 ", cursortarget, cursorobject];
- hintsilent format ["> %1 %2 %3", cursortarget, cameraView == "gunner", _spotters];
+ hintsilent format ["> %1 %2 %3 %4", cursortarget, cameraView == "gunner", _spotters, (player getVariable ["isSniperScope",false])];
 
- if(count _spotters > 0 && cameraView == "gunner" && alive cursortarget && cursortarget iskindof "CAManBase") then
+ if(count _spotters > 0) then
  {
   _spotter = _spotters # 0;
 
@@ -70,3 +77,50 @@ _has
 };
 
 };
+
+
+setPlayerScopeStatus =
+{
+params ["_scope","_mode"];
+
+private _cfg = configfile >> "CfgWeapons" >> _scope >> "ItemInfo" >> "OpticsModes" >> _mode;
+
+player setVariable ["isSniperScope", ((getnumber(_cfg >> "distanceZoomMax")) >= 500) ];
+
+};
+
+
+player addEventHandler ["OpticsModeChanged",
+{
+ params ["_unit", "_opticsClass", "_newMode", "_oldMode", "_isADS"]; 
+
+//systemchat (str _this);
+
+if((currentweapon player) != "" && (currentweapon player) == (primaryWeapon player)) then
+{
+_scope = primaryweaponitems player # 2;
+
+[_scope,_newMode] call setPlayerScopeStatus;
+
+}
+else
+{
+player setVariable ["isSniperScope", false];
+};
+
+// systemchat format[">>> %1 %2",  (player getVariable ["isSniperScope",false]), (getnumber(_cfg >> "distanceZoomMax")) ];
+
+//systemchat format[">> %1 %2 -- %3 %4 %5", getnumber (_cfg >> "distanceZoomMax"), getnumber(_cfg >> "distanceZoomMin"), getnumber(_cfg >> "opticsZoomMax") , getnumber(_cfg >> "opticsZoomMin"), getnumber(_cfg >> "opticsZoomInit") ];
+
+}];
+
+// init
+_scope = primaryweaponitems player # 2;
+if(_scope != "") then
+{
+[_scope,player getOpticsMode 1] call setPlayerScopeStatus;
+};
+
+
+
+
