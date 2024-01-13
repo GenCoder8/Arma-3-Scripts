@@ -1,12 +1,12 @@
 
 #define VALID_BINOCULARS ["Rangefinder","Binoculars"] // order important
+#define SNIPER_MIN_RANGE 500
 
 
 spotterLoop =
 {
 
 private _curTarget = objNull;
-private _spotter = objnull;
 
 while { true } do
 {
@@ -25,7 +25,7 @@ private _scope = primaryweaponitems player # 2;
 
 private _cfg = configfile >> "CfgWeapons" >> _scope >> "ItemInfo" >> "OpticsModes" >> (player getOpticsMode 1);
 
-_hasSniperScope = (getnumber(_cfg >> "distanceZoomMax")) >= 500;
+_hasSniperScope = (getnumber(_cfg >> "distanceZoomMax")) >= SNIPER_MIN_RANGE;
 };
 };
 
@@ -35,7 +35,7 @@ if(_hasSniperScope && alive cursortarget && cursortarget iskindof "CAManBase") t
 private _units = (units player) select { !isplayer _x && !([_x,false] call inVehicle) };
 
 // Get men with binoculars or rangefinder
- _spotters = _units select 
+_spotters = _units select 
 {
 private _man = _x;
 private _has = false;
@@ -52,11 +52,11 @@ _has
 // _spotter selectWeapon "Binoculars";
 
  // hintsilent format ["> %1 %2 ", cursortarget, cursorobject];
- hintsilent format ["> %1 %2 %3 %4", cursortarget, cameraView == "gunner", _spotters, (player getVariable ["isSniperScope",false])];
+ //hintsilent format ["> %1 %2 %3 %4", cursortarget, cameraView == "gunner", _spotters, (player getVariable ["isSniperScope",false])];
 
  if(count _spotters > 0) then
  {
-  _spotter = _spotters # 0;
+  private _spotter = _spotters # 0;
 
   private _range = VALID_BINOCULARS select { _spotter hasWeapon _x };
 
