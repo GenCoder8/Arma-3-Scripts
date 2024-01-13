@@ -169,6 +169,17 @@ if(_maxIters == 0) then
 };
 
 
+doesObjectFall =
+{
+ (getNumber ((configof _this) >> "fallable")) == 1
+};
+
+doesObjectGetDestroyed =
+{
+!(_this call doesObjectFall) && !(_this iskindof "house")
+};
+
+
 registerFallTriggerObj =
 {
 

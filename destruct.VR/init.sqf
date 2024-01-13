@@ -4,15 +4,6 @@ isStaticWeapon =
  (_this isKindof "StaticWeapon")
 };
 
-doesObjectFall =
-{
- (getNumber ((configof _this) >> "fallable")) == 1
-};
-
-doesObjectGetDestroyed =
-{
-!(_this call doesObjectFall) && !(_this iskindof "house")
-};
 
 _h = execvm "destruct.sqf";
 waituntil { scriptdone _h };
