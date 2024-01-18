@@ -14,7 +14,7 @@ while { true } do
 if(alive player && !([player,false] call inVehicle)) then
 {
 
-private _spotters = [];
+private _spotters = []; // Spotters retrieved only if all conditions fulfilled
 private _hasSniperScope = false;
 
 if(cameraView == "gunner") then
