@@ -9,7 +9,7 @@ call updateViewDistance;
 
 call settingsOpen;
 
-
+// Persistent on respawn
 player addEventHandler ["GetInMan",
 {
  params ["_plr", "_role", "_veh", "_turret"];
@@ -19,7 +19,7 @@ player addEventHandler ["GetInMan",
 }];
 
 
-
+// Persistent on respawn
 player addEventHandler ["GetOutMan",
 {
  params ["_plr", "_role", "_veh", "_turret", "_isEject"];
