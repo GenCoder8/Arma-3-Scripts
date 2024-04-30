@@ -1,0 +1,105 @@
+
+#define GUI_GRID_X	(0)
+#define GUI_GRID_Y	(0)
+#define GUI_GRID_W	(0.025)
+#define GUI_GRID_H	(0.04)
+#define GUI_GRID_WAbs	(1)
+#define GUI_GRID_HAbs	(1)
+
+
+#define UI_GRID_X	(safezoneX)
+#define UI_GRID_Y	(safezoneY)
+#define UI_GRID_W	(5 * 0.5 * pixelW * pixelGrid)
+#define UI_GRID_H	(5 * 0.5 * pixelH * pixelGrid)
+
+
+#define UI_GRID_WAbs	(safezoneW)
+#define UI_GRID_HAbs	(safeZoneH)
+
+#include "parent.h"
+
+
+/* #Gynoqo
+$[
+	1.063,
+	["selectobj",[["0","0","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
+	[1500,"",[2,"",["4 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","20.5 * UI_GRID_W","15 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1600,"",[2,"Build",["19 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1601,"",[2,"Close",["7 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+]
+*/
+
+
+
+class SelectObjectDlg
+{
+ idd = 1238990;
+
+ movingEnable = false;
+ 
+ onLoad = "";
+
+ class controlsBackground 
+ {
+ 
+ 	class Background
+    {
+	idc = 3700;
+	x = 15 * UI_GRID_W + UI_GRID_X;
+	y = 5 * UI_GRID_H + UI_GRID_Y;
+	w = 34 * UI_GRID_W;
+	h = 26 * UI_GRID_H;
+	moving = false;
+	
+	colorBackground[] = {0,0,0,1};
+	
+    };
+ 
+ };
+	
+ class objects 
+ {
+ };
+	
+	
+class controls 
+{
+
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Gynoqo)
+////////////////////////////////////////////////////////
+
+class RscListbox_1500: RscListbox
+{
+	idc = 1500;
+	x = 4 * UI_GRID_W + UI_GRID_X;
+	y = 3 * UI_GRID_H + UI_GRID_Y;
+	w = 20.5 * UI_GRID_W;
+	h = 15 * UI_GRID_H;
+};
+class RscButton_1600: RscButton
+{
+	idc = 1600;
+	text = "Build"; //--- ToDo: Localize;
+	x = 19 * UI_GRID_W + UI_GRID_X;
+	y = 22.5 * UI_GRID_H + UI_GRID_Y;
+	w = 7 * UI_GRID_W;
+	h = 2.5 * UI_GRID_H;
+};
+class RscButton_1601: RscButton
+{
+	idc = 1601;
+	text = "Close"; //--- ToDo: Localize;
+	x = 7 * UI_GRID_W + UI_GRID_X;
+	y = 22.5 * UI_GRID_H + UI_GRID_Y;
+	w = 7 * UI_GRID_W;
+	h = 2.5 * UI_GRID_H;
+};
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT END
+////////////////////////////////////////////////////////
+
+
+};
+
+};
