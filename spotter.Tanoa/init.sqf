@@ -21,5 +21,16 @@ isVehParachute =
  ((tolower (typeof _this)) find "parachute") >= 0
 };
 
+ishostile = { true };
+
+playSoundToPlayer =
+{
+params ["_soundFile","_volume",["_pitch",1]];
+
+private _handle = playSound3D [_soundFile, player, false, getPosASL player, _volume, _pitch, 0, 0, true]; 
+
+_handle
+};
+
 
 [] spawn spotterLoop;
