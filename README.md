@@ -46,6 +46,8 @@ Project to make barrier objects destructible
 
 Combat engineering allows you to build ladders and planks to walk on
 
+(Player collision with the placed object causes problems. Waiting for fix in arma)
+
 
 ### These scripts are WIP (Work in progress) 
 
