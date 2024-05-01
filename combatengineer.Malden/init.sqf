@@ -1,11 +1,12 @@
 
-sleep 0.1;
-
-
-
 
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 
+
+_h = execvm "objectSelectDlg.sqf";
+waituntil { scriptdone _h };
+
+sleep 0.1;
 
 
 #define CE_MOVE_ENABLE_KEYS [DIK_LCONTROL,DIK_RCONTROL]
@@ -131,74 +132,6 @@ deleteVehicle placingObj;
 
 //if(true) exitwith {};
 
-selectObjsDlgObjects = [];
-
-openSelectObjectDlg =
-{
-params ["_selObjs","_callbackFn"];
-
-createDialog "SelectObjectDlg";
-
-_display = findDisplay 1238990;
-
-private _list = _display displayCtrl 1500;
-
-{
- _x params ["_name","_cfgName"];
-
- _list lbadd _name;
-
- private _objCfg = configfile >> "CfgVehicles" >> _cfgName;
-
- selectObjsDlgObjects pushback [_name,_objCfg];
-} foreach _selObjs;
-
-selectObjectDlgSelObject = [];
-selectObjectDlgCallback = _callbackFn;
-};
-
-selectObjectDlgSel =
-{
- params ["_ctrl","_index"];
-
-
-_display = findDisplay 1238990;
-
- private _pic = _display displayCtrl 1200;
-
- if(_index < 0) exitWith {};
-
- (selectObjsDlgObjects # _index) params ["_name","_objCfg"];
-
- _pic ctrlSetText format ["%1",getText (_objCfg >> "editorPreview")];
-
- // systemchat format ["_ctrl %1", _objCfg];
-
- selectObjectDlgSelObject = (selectObjsDlgObjects # _index);
-};
-
-selectObjectDlgApply =
-{
-
- if(count selectObjectDlgSelObject == 0) exitwith {};
-
-
- closeDialog 0;
-
-
- selectObjectDlgSelObject params ["_name","_objCfg"];
-
-
-
- (configname _objCfg) call selectObjectDlgCallback;
-
-};
-
-selectObjectDlgCancel =
-{
- closeDialog 0;
-};
-
 ceOpenObjectSelect =
 {
 
@@ -208,7 +141,7 @@ for "_i" from 0 to (count _ceObjs - 1) do
 {
  private _ceObj = _ceObjs select _i;
 
- _selObjs pushback [configname _ceObj,(getText (_ceObj >> "object"))];
+ _selObjs pushback [getText(_ceObj >> "name"),(getText (_ceObj >> "object"))];
 };
 
 [_selObjs,ceStartPlacing] call openSelectObjectDlg;
@@ -259,7 +192,10 @@ while { alive player && !isnull placingObj } do
 
 
 
-_yaw = (getdir player); _pitch = placingTilt; _roll = 0;
+private _yaw = (getdir player); 
+private _pitch = placingTilt; 
+private _roll = 0;
+
 placingObj setVectorDirAndUp [
 	[sin _yaw * cos _pitch, cos _yaw * cos _pitch, sin _pitch],
 	[[sin _roll, -sin _pitch, cos _roll * cos _pitch], -_yaw] call BIS_fnc_rotateVector2D
