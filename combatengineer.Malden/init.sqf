@@ -114,20 +114,6 @@ if(placingMode == CE_PLACING_MODE_AWAY) then { hint "Changing away position"; };
 }];
 
 
-_actionID = player addAction ["Place", {
-
-_finalobj = createVehicle [placingObjType, getposATL placingObj, [], 0, "CAN_COLLIDE"];
-
-_finalobj setVectorDirAndUp [vectorDir placingObj,vectorUp placingObj];
-
-_finalobj setposATL (getposATL placingObj);
-
-//_finalobj setdir (getdir placingObj);
-
-
-deleteVehicle placingObj;
-
-}];
 
 
 //if(true) exitwith {};
@@ -136,7 +122,9 @@ ceOpenObjectSelect =
 {
 
 private _selObjs = [];
-_ceObjs = missionConfigFile >> "CombatEngineerObjs";
+
+private _ceObjs = missionConfigFile >> "CombatEngineerObjs";
+
 for "_i" from 0 to (count _ceObjs - 1) do
 {
  private _ceObj = _ceObjs select _i;
@@ -169,6 +157,30 @@ private _pobj = createSimpleObject [placingObjType, [0,0,0], true];
 
 //_pobj disableCollisionWith player;
 player disableCollisionWith _pobj;
+
+
+
+cePlacingAction = player addAction ["Place", {
+
+private _finalobj = createVehicle [placingObjType, getposATL placingObj, [], 0, "CAN_COLLIDE"];
+
+_finalobj setVectorDirAndUp [vectorDir placingObj,vectorUp placingObj];
+
+_finalobj setposATL (getposATL placingObj);
+
+//_finalobj setdir (getdir placingObj);
+
+
+deleteVehicle placingObj;
+
+}];
+
+ceCancelAction = player addAction ["Cancel Placement", {
+
+
+call ceEndPlacing;
+
+}];
 
 
 
@@ -205,14 +217,22 @@ placingObj setVectorDirAndUp [
  sleep 0.1;
 };
 
+call ceEndPlacing;
+
+};
+
+};
+
+ceEndPlacing =
+{
+
+player removeAction cePlacingAction;
+player removeAction ceCancelAction;
+
+
 // Make sure deleted
 deleteVehicle placingObj;
-
 };
-
-};
-
-
 
 
 call ceOpenObjectSelect;
