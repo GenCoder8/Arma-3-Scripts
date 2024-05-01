@@ -135,7 +135,7 @@ selectObjsDlgObjects = [];
 
 openSelectObjectDlg =
 {
-params ["_selObjs"];
+params ["_selObjs","_callbackFn"];
 
 createDialog "SelectObjectDlg";
 
@@ -154,6 +154,7 @@ private _list = _display displayCtrl 1500;
 } foreach _selObjs;
 
 selectObjectDlgSelObject = [];
+selectObjectDlgCallback = _callbackFn;
 };
 
 selectObjectDlgSel =
@@ -187,8 +188,10 @@ selectObjectDlgApply =
 
  selectObjectDlgSelObject params ["_name","_objCfg"];
 
- placingObjType = configname _objCfg;
- [] spawn ceStartPlacing;
+
+
+ (configname _objCfg) call selectObjectDlgCallback;
+
 };
 
 selectObjectDlgCancel =
@@ -208,15 +211,18 @@ for "_i" from 0 to (count _ceObjs - 1) do
  _selObjs pushback [configname _ceObj,(getText (_ceObj >> "object"))];
 };
 
-[_selObjs] call openSelectObjectDlg;
+[_selObjs,ceStartPlacing] call openSelectObjectDlg;
 
 };
 
-call ceOpenObjectSelect;
 
 
 ceStartPlacing =
 {
+ params ["_placeObjType"];
+
+ placingObjType = _placeObjType;
+
 
 placingZ = 0.5;
 placingTilt = 0;
@@ -231,35 +237,49 @@ private _pobj = createSimpleObject [placingObjType, [0,0,0], true];
 //_pobj disableCollisionWith player;
 player disableCollisionWith _pobj;
 
-sleep 0.1;
+
 
 placingObj = _pobj;
 
 //if(true) exitwith {};
 
-while { !isnull placingObj } do
+[] spawn
+{
+
+sleep 0.1; // For disable collision to work
+
+while { alive player && !isnull placingObj } do
 {
 
  private _pos = getposATL player;
 
  private _posFromPlr = player modelToWorld [0,placingAwayFrom,placingZ];
 
- _pobj setPosATL _posFromPlr;
+ placingObj setPosATL _posFromPlr;
 
- //_pobj setdir (getdir player);
 
 
 _yaw = (getdir player); _pitch = placingTilt; _roll = 0;
-_pobj setVectorDirAndUp [
+placingObj setVectorDirAndUp [
 	[sin _yaw * cos _pitch, cos _yaw * cos _pitch, sin _pitch],
 	[[sin _roll, -sin _pitch, cos _roll * cos _pitch], -_yaw] call BIS_fnc_rotateVector2D
 ];
 
- //_pobj setVectorDirAndUp [[0,1,0], [1,0,0]];
-
- /// _pobj setVectorDir [0,0,placingTilt];
 
  sleep 0.1;
 };
 
+// Make sure deleted
+deleteVehicle placingObj;
+
 };
+
+};
+
+
+
+
+call ceOpenObjectSelect;
+
+
+
