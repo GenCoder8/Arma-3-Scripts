@@ -7,7 +7,7 @@
 #define CE_MOVE_ENABLE_KEYS [DIK_LCONTROL,DIK_RCONTROL]
 
 #define CE_PLACING_HEIGHT_MUL   0.1
-#define CE_PLANING_ROT_MUL 0.5
+#define CE_PLANING_TILT_MUL 1
 #define CE_PLANING_AWAY_MUL 0.2
 
 #define CE_PLACING_AWAY_FROM  1.5
@@ -44,13 +44,13 @@ if(placingZ > 10) then { placingZ = 10; };
 
 if(placingMode == CE_PLACING_MODE_TILT) then
 {
-placingTilt = placingTilt - _scroll * CE_PLANING_ROT_MUL;
+placingTilt = placingTilt - _scroll * CE_PLANING_TILT_MUL;
 };
 
 if(placingMode == CE_PLACING_MODE_AWAY) then
 {
  placingAwayFrom = placingAwayFrom + _scroll * CE_PLANING_AWAY_MUL;
- if(placingAwayFrom < 0) then { placingAwayFrom = 0; };
+ if(placingAwayFrom < ceMinAwayDistance) then { placingAwayFrom = ceMinAwayDistance; };
  if(placingAwayFrom > 10) then { placingAwayFrom = 10; };
 };
 
@@ -147,12 +147,20 @@ placingAwayFrom = 1.5;
 
 private _pobj = createSimpleObject [placingObjType, [0,0,0], true];
 
+// private _pobj = createVehicleLocal [placingObjType, [0,0,0], [], 0, "CAN_COLLIDE"];
+
 placingObj = _pobj;
 
-// _pobj = createVehicle [placingObjType, getposATL player vectoradd [0,0,0.5], [], 0, "CAN_COLLIDE"];
+private _size = _pobj call getObjectSize;
+
+ceMinAwayDistance = ((_size # 0) max (_size # 1)) / 2 + 1.5;
+
+placingAwayFrom = ceMinAwayDistance;
 
 
-//_pobj disableCollisionWith player;
+// systemchat format ["ceMinAwayDistance %1", ceMinAwayDistance];
+
+
 player disableCollisionWith _pobj;
 
 
@@ -184,12 +192,8 @@ call ceEndPlacing;
 
 
 
-//if(true) exitwith {};
-
 [] spawn
 {
-
-sleep 0.1; // For disable collision to work
 
 
 cePlacingEF = addMissionEventHandler ["EachFrame",
@@ -201,11 +205,12 @@ cePlacingEF = addMissionEventHandler ["EachFrame",
 
  private _posFromPlr = player modelToWorld [0,placingAwayFrom,placingZ];
 
+
  placingObj setPosATL _posFromPlr;
 
 
 
-private _yaw = (getdir player); 
+private _yaw = getdir player; 
 private _pitch = placingTilt; 
 private _roll = 0;
 
@@ -214,19 +219,12 @@ placingObj setVectorDirAndUp [
 	[[sin _roll, -sin _pitch, cos _roll * cos _pitch], -_yaw] call BIS_fnc_rotateVector2D
 ];
 
+
+
 }];
 
 
 
-/*
-while { alive player && !isnull placingObj } do
-{
-
- sleep 0.1;
-};
-
-call ceEndPlacing;
-*/
 
 };
 
