@@ -194,8 +194,11 @@ placingObj = _pobj;
 
 sleep 0.1; // For disable collision to work
 
-while { alive player && !isnull placingObj } do
+
+cePlacingEF = addMissionEventHandler ["EachFrame",
 {
+
+ if(!alive player) exitwith { call ceEndPlacing; };
 
  private _pos = getposATL player;
 
@@ -214,11 +217,19 @@ placingObj setVectorDirAndUp [
 	[[sin _roll, -sin _pitch, cos _roll * cos _pitch], -_yaw] call BIS_fnc_rotateVector2D
 ];
 
+}];
+
+
+
+/*
+while { alive player && !isnull placingObj } do
+{
 
  sleep 0.1;
 };
 
 call ceEndPlacing;
+*/
 
 };
 
@@ -226,6 +237,12 @@ call ceEndPlacing;
 
 ceEndPlacing =
 {
+
+if(!isnil "cePlacingEF") then
+{
+removeMissionEventHandler ["EachFrame", cePlacingEF];
+cePlacingEF = nil;
+};
 
 if(!isnil "cePlacingAction") then
 {
