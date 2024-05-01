@@ -254,6 +254,7 @@ ceIsPlacing =
 
 call ceOpenObjectSelect; // Begin testing
 
+hint "Hold ctrl and scroll mouse middle wheen to move the object. Press H to change editing mode";
 
 
 // Test functions
