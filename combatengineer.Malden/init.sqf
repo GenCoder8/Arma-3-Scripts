@@ -160,7 +160,8 @@ player disableCollisionWith _pobj;
 
 
 
-cePlacingAction = player addAction ["Place", {
+cePlacingAction = player addAction ["Place",
+{
 
 private _finalobj = createVehicle [placingObjType, getposATL placingObj, [], 0, "CAN_COLLIDE"];
 
@@ -171,12 +172,12 @@ _finalobj setposATL (getposATL placingObj);
 //_finalobj setdir (getdir placingObj);
 
 
-deleteVehicle placingObj;
+call ceEndPlacing;
 
 }];
 
-ceCancelAction = player addAction ["Cancel Placement", {
-
+ceCancelAction = player addAction ["Cancel Placement",
+{
 
 call ceEndPlacing;
 
