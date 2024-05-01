@@ -19,16 +19,17 @@
 #include "parent.h"
 
 
-/* #Wajulu
+/* #Bupiqi
 $[
 	1.063,
 	["selectobj",[["0","0","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
 	[1500,"",[2,"",["4 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","20.5 * UI_GRID_W","15 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["onLBSelChanged = |_this call selectObjectDlgSel|;"]],
-	[1600,"",[2,"Build",["19 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1601,"",[2,"Close",["7 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1600,"",[2,"Build",["19 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call selectObjectDlgApply|;"]],
+	[1601,"",[2,"Close",["7 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call selectObjectDlgCancel|;"]],
 	[1200,"",[2,"#(argb,8,8,3)color(1,1,1,1)",["26.5 * UI_GRID_W + UI_GRID_X","4 * UI_GRID_H + UI_GRID_Y","5.5 * UI_GRID_W","5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
 
 
 
@@ -70,7 +71,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Wajulu)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Bupiqi)
 ////////////////////////////////////////////////////////
 
 class RscListbox_1500: RscListbox
@@ -85,6 +86,8 @@ class RscListbox_1500: RscListbox
 };
 class RscButton_1600: RscButton
 {
+	action = "call selectObjectDlgApply";
+
 	idc = 1600;
 	text = "Build"; //--- ToDo: Localize;
 	x = 19 * UI_GRID_W + UI_GRID_X;
@@ -94,6 +97,8 @@ class RscButton_1600: RscButton
 };
 class RscButton_1601: RscButton
 {
+	action = "call selectObjectDlgCancel";
+
 	idc = 1601;
 	text = "Close"; //--- ToDo: Localize;
 	x = 7 * UI_GRID_W + UI_GRID_X;

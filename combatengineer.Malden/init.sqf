@@ -25,9 +25,6 @@ sleep 0.1;
 placingCtrlDown = false;
 placingMode = CE_PLACING_MODE_HEIGHT;
 
-placingZ = 0.5;
-placingTilt = 0;
-placingAwayFrom = 1.5;
 
 placingObjType = "Land_PierLadder_F"; // "Land_Plank_01_4m_F";
 
@@ -156,7 +153,7 @@ private _list = _display displayCtrl 1500;
  selectObjsDlgObjects pushback [_name,_objCfg];
 } foreach _selObjs;
 
-
+selectObjectDlgSelObject = [];
 };
 
 selectObjectDlgSel =
@@ -174,8 +171,29 @@ _display = findDisplay 1238990;
 
  _pic ctrlSetText format ["%1",getText (_objCfg >> "editorPreview")];
 
- systemchat format ["_ctrl %1", _objCfg];
+ // systemchat format ["_ctrl %1", _objCfg];
 
+ selectObjectDlgSelObject = (selectObjsDlgObjects # _index);
+};
+
+selectObjectDlgApply =
+{
+
+ if(count selectObjectDlgSelObject == 0) exitwith {};
+
+
+ closeDialog 0;
+
+
+ selectObjectDlgSelObject params ["_name","_objCfg"];
+
+ placingObjType = configname _objCfg;
+ [] spawn ceStartPlacing;
+};
+
+selectObjectDlgCancel =
+{
+ closeDialog 0;
 };
 
 ceOpenObjectSelect =
@@ -199,6 +217,11 @@ call ceOpenObjectSelect;
 
 ceStartPlacing =
 {
+
+placingZ = 0.5;
+placingTilt = 0;
+placingAwayFrom = 1.5;
+
 
 private _pobj = createSimpleObject [placingObjType, [0,0,0], true];
 
