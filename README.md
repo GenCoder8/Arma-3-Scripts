@@ -42,6 +42,10 @@ Settings dialog to change the view distance
 
 Project to make barrier objects destructible
 
+## <b>destruct.VR</b>
+
+Combat engineering allows you to build ladders and planks to walk on
+
 
 ### These scripts are WIP (Work in progress) 
 
