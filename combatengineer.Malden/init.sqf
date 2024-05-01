@@ -27,16 +27,35 @@ call ceOpenObjectSelect; // Begin testing
 hint "Hold ctrl and scroll mouse middle wheel to move the object. Press H to change editing mode";
 
 
-// Test functions
+// Depencies
+
+#define DEF_ACT_IMG_SIZE  1.1
+
+makeActStr =
+{
+ params ["_text","_color",["_image",""],["_imgSize",DEF_ACT_IMG_SIZE]];
+
+ private _imageTag = "";
+ if(_image != "") then 
+ {
+  _imageTag = format ["<img size='%2' image='%1' />", _image, _imgSize ];
+ };
+
+ format ["<t size='%1' color ='%3'>%2</t> %4", _imgSize, _text, _color, _imageTag ]
+};
 
 userAddAction =
 {
- params ["_actOwner","_text","_action","_condition",["_radius",3]];
+ params ["_actOwner","_text","_action",["_condition",""],["_radius",3]];
  
 private _id = _actOwner addAction [_text, _action, nil, 1.5, true, true,"",_condition,_radius];
 
 _id
 };
+
+
+
+// Test functions
 
 
 _id = [player,"place objs", {

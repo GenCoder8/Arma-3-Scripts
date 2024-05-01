@@ -27,6 +27,9 @@ private _list = _display displayCtrl 1500;
  selectObjsDlgObjects pushback [_name,_objCfg];
 } foreach _selObjs;
 
+private _pic = _display displayCtrl 1200;
+_pic ctrlShow false;
+
 selectObjectDlgSelObject = [];
 selectObjectDlgCallback = _callbackFn;
 };
@@ -45,6 +48,7 @@ _display = findDisplay SELOBJDLG_ID;
 
  (selectObjsDlgObjects # _index) params ["_name","_objCfg"];
 
+ _pic ctrlShow true;
  _pic ctrlSetText format ["%1",getText (_objCfg >> "editorPreview")];
 
  // systemchat format ["_ctrl %1", _objCfg];
@@ -56,7 +60,7 @@ _display = findDisplay SELOBJDLG_ID;
 selectObjectDlgApply =
 {
   // Anyhing selected?
- if(count selectObjectDlgSelObject == 0) exitwith {};
+ if(count selectObjectDlgSelObject == 0) exitwith { hint "Nothing selected"; };
 
 
  closeDialog 0;

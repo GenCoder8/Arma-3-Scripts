@@ -100,6 +100,8 @@ if(placingMode >= CE_MAX_PLACING_MODES) then
 placingMode = 0;
 };
 
+systemchat format ["placingMode %1", placingMode];
+
 if(placingMode == CE_PLACING_MODE_HEIGHT) then { hint "Changing height"; };
 if(placingMode == CE_PLACING_MODE_TILT) then { hint "Changing tilt"; };
 if(placingMode == CE_PLACING_MODE_AWAY) then { hint "Changing away position"; };
@@ -144,6 +146,8 @@ placingZ = 0.5;
 placingTilt = 0;
 placingAwayFrom = 1.5;
 
+placingMode = CE_PLACING_MODE_HEIGHT; // Reset
+
 
 private _pobj = createSimpleObject [placingObjType, [0,0,0], true];
 
@@ -164,9 +168,9 @@ placingAwayFrom = ceMinAwayDistance;
 player disableCollisionWith _pobj;
 
 
+_p = ["Place","#00e600","a3\3den\data\displays\display3den\toolbar\redo_ca.paa"] call makeActStr;
 
-cePlacingAction = player addAction ["Place",
-{
+cePlacingAction = [player,_p,{
 
 private _finalobj = createVehicle [placingObjType, getposATL placingObj, [], 0, "CAN_COLLIDE"];
 
@@ -179,21 +183,17 @@ _finalobj setposATL (getposATL placingObj);
 
 call ceEndPlacing;
 
-}];
+}] call userAddAction;
 
-ceCancelAction = player addAction ["Cancel Placement",
-{
 
-call ceEndPlacing;
+_c = ["Cancel Placement","#FF0000","a3\ui_f\data\igui\cfg\actions\obsolete\ui_action_cancel_ca.paa"] call makeActStr;
 
-}];
+ceCancelAction = [player,_c,{ call ceEndPlacing; }] call userAddAction;
 
 
 
 
 
-[] spawn
-{
 
 
 cePlacingEF = addMissionEventHandler ["EachFrame",
@@ -226,7 +226,7 @@ placingObj setVectorDirAndUp [
 
 
 
-};
+
 
 };
 
