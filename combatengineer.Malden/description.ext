@@ -19,16 +19,20 @@
 #include "parent.h"
 
 
-/* #Gynoqo
+/* #Wajulu
 $[
 	1.063,
 	["selectobj",[["0","0","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
-	[1500,"",[2,"",["4 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","20.5 * UI_GRID_W","15 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1500,"",[2,"",["4 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","20.5 * UI_GRID_W","15 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["onLBSelChanged = |_this call selectObjectDlgSel|;"]],
 	[1600,"",[2,"Build",["19 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
-	[1601,"",[2,"Close",["7 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1601,"",[2,"Close",["7 * UI_GRID_W + UI_GRID_X","22.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1200,"",[2,"#(argb,8,8,3)color(1,1,1,1)",["26.5 * UI_GRID_W + UI_GRID_X","4 * UI_GRID_H + UI_GRID_Y","5.5 * UI_GRID_W","5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
 
+
+
+#include "cePlaceables.h"
 
 
 class SelectObjectDlg
@@ -66,11 +70,13 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Gynoqo)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Wajulu)
 ////////////////////////////////////////////////////////
 
 class RscListbox_1500: RscListbox
 {
+	onLBSelChanged = "_this call selectObjectDlgSel";
+
 	idc = 1500;
 	x = 4 * UI_GRID_W + UI_GRID_X;
 	y = 3 * UI_GRID_H + UI_GRID_Y;
@@ -94,6 +100,15 @@ class RscButton_1601: RscButton
 	y = 22.5 * UI_GRID_H + UI_GRID_Y;
 	w = 7 * UI_GRID_W;
 	h = 2.5 * UI_GRID_H;
+};
+class RscPicture_1200: RscPicture
+{
+	idc = 1200;
+	text = "#(argb,8,8,3)color(1,1,1,1)";
+	x = 26.5 * UI_GRID_W + UI_GRID_X;
+	y = 4 * UI_GRID_H + UI_GRID_Y;
+	w = 5.5 * UI_GRID_W;
+	h = 5 * UI_GRID_H;
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
