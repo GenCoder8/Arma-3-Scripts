@@ -95,6 +95,17 @@ if(_key in CE_MOVE_ENABLE_KEYS) then
 
 if(_key == DIK_H) then
 {
+
+};
+
+}];
+
+
+};
+
+ceToggleEditingMode =
+{
+
 placingMode = placingMode + 1;
 if(placingMode >= CE_MAX_PLACING_MODES) then
 {
@@ -109,10 +120,6 @@ if(placingMode == CE_PLACING_MODE_AWAY) then { hint "Changing away position"; };
 
 };
 
-}];
-
-
-};
 
 //if(true) exitwith {};
 
@@ -188,6 +195,10 @@ call ceEndPlacing;
 }] call userAddAction;
 
 
+_c = ["Toggle Mode","#ffff66","a3\ui_f\data\gui\cfg\cursors\rotate_gs.paa"] call makeActStr;
+ceToggleAction = [player,_c,{ call ceToggleEditingMode; },"true",3,"User1"] call userAddAction;
+
+
 _c = ["Cancel Placement","#FF0000","a3\ui_f\data\igui\cfg\actions\obsolete\ui_action_cancel_ca.paa"] call makeActStr;
 
 ceCancelAction = [player,_c,{ call ceEndPlacing; }] call userAddAction;
@@ -228,6 +239,8 @@ placingObj setVectorDirAndUp [
 
 
 
+hint "Hold ctrl and scroll mouse middle wheel to move the object. Define Custom controls -> Use action 1. to change editing mode quickly";
+
 
 
 };
@@ -257,11 +270,14 @@ ceInputKeyDown = nil;
 if(!isnil "cePlacingAction") then
 {
 player removeAction cePlacingAction;
+player removeAction ceToggleAction;
 player removeAction ceCancelAction;
 };
 
 cePlacingAction = nil;
+ceToggleAction = nil;
 ceCancelAction = nil;
+
 
 // Make sure deleted
 if(!isnull placingObj) then

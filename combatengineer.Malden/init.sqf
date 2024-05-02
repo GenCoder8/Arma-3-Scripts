@@ -24,8 +24,6 @@ getObjectSize =
 sleep 0.01;
 call ceOpenObjectSelect; // Begin testing
 
-hint "Hold ctrl and scroll mouse middle wheel to move the object. Press H to change editing mode";
-
 
 // Depencies
 
@@ -46,9 +44,9 @@ makeActStr =
 
 userAddAction =
 {
- params ["_actOwner","_text","_action",["_condition",""],["_radius",3]];
+ params ["_actOwner","_text","_action",["_condition",""],["_radius",3],["_shortcut",""]];
  
-private _id = _actOwner addAction [_text, _action, nil, 1.5, true, true,"",_condition,_radius];
+private _id = _actOwner addAction [_text, _action, nil, 1.5, true, true,_shortcut,_condition,_radius];
 
 _id
 };
