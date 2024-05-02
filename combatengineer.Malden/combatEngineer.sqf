@@ -24,10 +24,11 @@ placingMode = CE_PLACING_MODE_HEIGHT;
 
 placingObjType = "Land_PierLadder_F"; // "Land_Plank_01_4m_F";
 
+ceRegisterInput =
+{
+//waituntil { !isnull (findDisplay 46) };
 
-waituntil { !isnull (findDisplay 46) };
-
-(findDisplay 46) displayAddEventHandler ["MouseZChanged",
+ceInputKeyZ = (findDisplay 46) displayAddEventHandler ["MouseZChanged",
 {
 params ["_display", "_scroll"];
 
@@ -62,7 +63,7 @@ false
 }];
 
 
-(findDisplay 46) displayAddEventHandler ["KeyDown",
+ceInputKeyDown = (findDisplay 46) displayAddEventHandler ["KeyDown",
 {
 
 params ["_display", "_key", "_shift", "_ctrl", "_alt"];
@@ -78,10 +79,10 @@ if(_key in CE_MOVE_ENABLE_KEYS) then
 }];
 
 
-(findDisplay 46) displayAddEventHandler ["KeyUp",
+ceInputKeyUp = (findDisplay 46) displayAddEventHandler ["KeyUp",
 {
-
 params ["_display", "_key", "_shift", "_ctrl", "_alt"];
+
 
 if(_key in CE_MOVE_ENABLE_KEYS) then
 {
@@ -111,7 +112,7 @@ if(placingMode == CE_PLACING_MODE_AWAY) then { hint "Changing away position"; };
 }];
 
 
-
+};
 
 //if(true) exitwith {};
 
@@ -148,6 +149,7 @@ placingAwayFrom = 1.5;
 
 placingMode = CE_PLACING_MODE_HEIGHT; // Reset
 
+call ceRegisterInput;
 
 private _pobj = createSimpleObject [placingObjType, [0,0,0], true];
 
@@ -237,6 +239,19 @@ if(!isnil "cePlacingEF") then
 {
 removeMissionEventHandler ["EachFrame", cePlacingEF];
 cePlacingEF = nil;
+};
+
+if(!isnil "ceInputKeyUp") then
+{
+
+(findDisplay 46) displayRemoveEventHandler ["keyDown",ceInputKeyDown];
+(findDisplay 46) displayRemoveEventHandler ["KeyUp",ceInputKeyUp];
+(findDisplay 46) displayRemoveEventHandler ["MouseZChanged",ceInputKeyZ];
+
+ceInputKeyZ = nil;
+ceInputKeyUp = nil;
+ceInputKeyDown = nil;
+
 };
 
 if(!isnil "cePlacingAction") then
