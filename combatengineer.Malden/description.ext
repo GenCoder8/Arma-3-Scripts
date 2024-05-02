@@ -19,16 +19,20 @@
 #include "parent.h"
 
 
-/* #Mabejy
+/* #Feseqy
 $[
 	1.063,
-	["selectobj",[["0","0","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
-	[1500,"",[2,"",["7 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","20 * UI_GRID_W","15 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["onLBSelChanged = |_this call selectObjectDlgSel|;"]],
-	[1600,"",[2,"Build",["19.5 * UI_GRID_W + UI_GRID_X","22 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call selectObjectDlgApply|;"]],
-	[1601,"",[2,"Close",["7.5 * UI_GRID_W + UI_GRID_X","22 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call selectObjectDlgCancel|;"]],
-	[1200,"",[2,"#(argb,8,8,3)color(1,1,1,1)",["28 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","7 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	["selectobj",[["safezoneX","safezoneY","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
+	[1500,"",[2,"",["19 * UI_GRID_W + UI_GRID_X","7.5 * UI_GRID_H + UI_GRID_Y","20 * UI_GRID_W","15 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["onLBSelChanged = |_this call selectObjectDlgSel|;"]],
+	[1600,"",[2,"Build",["34 * UI_GRID_W + UI_GRID_X","26 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call selectObjectDlgApply|;"]],
+	[1601,"",[2,"Close",["22 * UI_GRID_W + UI_GRID_X","26 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |call selectObjectDlgCancel|;"]],
+	[1200,"",[2,"#(argb,8,8,3)color(1,1,1,1)",["40 * UI_GRID_W + UI_GRID_X","7.5 * UI_GRID_H + UI_GRID_Y","7 * UI_GRID_W","7 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
+
+
+
+
 
 
 
@@ -49,7 +53,7 @@ class SelectObjectDlg
  class controlsBackground 
  {
  
- 	class Background
+ 	class Background: IGUIBack
     {
 	idc = 3700;
 	x = 15 * UI_GRID_W + UI_GRID_X;
@@ -73,7 +77,7 @@ class controls
 {
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Mabejy)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Feseqy)
 ////////////////////////////////////////////////////////
 
 class RscListbox_1500: RscListbox
@@ -81,8 +85,8 @@ class RscListbox_1500: RscListbox
 	onLBSelChanged = "_this call selectObjectDlgSel";
 
 	idc = 1500;
-	x = 7 * UI_GRID_W + UI_GRID_X;
-	y = 3 * UI_GRID_H + UI_GRID_Y;
+	x = 19 * UI_GRID_W + UI_GRID_X;
+	y = 7.5 * UI_GRID_H + UI_GRID_Y;
 	w = 20 * UI_GRID_W;
 	h = 15 * UI_GRID_H;
 };
@@ -92,8 +96,8 @@ class RscButton_1600: RscButton
 
 	idc = 1600;
 	text = "Build"; //--- ToDo: Localize;
-	x = 19.5 * UI_GRID_W + UI_GRID_X;
-	y = 22 * UI_GRID_H + UI_GRID_Y;
+	x = 34 * UI_GRID_W + UI_GRID_X;
+	y = 26 * UI_GRID_H + UI_GRID_Y;
 	w = 7 * UI_GRID_W;
 	h = 2.5 * UI_GRID_H;
 };
@@ -103,8 +107,8 @@ class RscButton_1601: RscButton
 
 	idc = 1601;
 	text = "Close"; //--- ToDo: Localize;
-	x = 7.5 * UI_GRID_W + UI_GRID_X;
-	y = 22 * UI_GRID_H + UI_GRID_Y;
+	x = 22 * UI_GRID_W + UI_GRID_X;
+	y = 26 * UI_GRID_H + UI_GRID_Y;
 	w = 7 * UI_GRID_W;
 	h = 2.5 * UI_GRID_H;
 };
@@ -112,14 +116,17 @@ class RscPicture_1200: RscPicture
 {
 	idc = 1200;
 	text = "#(argb,8,8,3)color(1,1,1,1)";
-	x = 28 * UI_GRID_W + UI_GRID_X;
-	y = 3 * UI_GRID_H + UI_GRID_Y;
+	x = 40 * UI_GRID_W + UI_GRID_X;
+	y = 7.5 * UI_GRID_H + UI_GRID_Y;
 	w = 7 * UI_GRID_W;
 	h = 7 * UI_GRID_H;
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////
+
+
+
 
 
 
