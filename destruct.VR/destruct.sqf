@@ -11,7 +11,7 @@ dropPieces =
 private _pieces = (nearestObjects [_center, [], 100]) select {
 
 // Only destroyable or fallable checked
-((_x getvariable ["isDestroyable",false]) || (_x call doesObjectFall))
+((_x getvariable ["isDestroyable",false]) || (_x call doesObjectFall)) && !(_x iskindof "AllVehicles")
 };
 
 private _needsUpdate = true;
@@ -35,11 +35,11 @@ if((_obj getVariable ["markedForDel", false])) then { continue; };
  private _pos = getposATL _obj;
 
 
-
+/*
 if(_obj == testb) then
 {
  hint "Tested!";
-};
+};*/
 
 // if(typeof _obj != "Land_HBarrier_01_line_3_green_F") then { continue; };
 
@@ -105,7 +105,10 @@ _newpos = aslToATL [_pos # 0, _pos # 1, _closestHeight];
 
 if((_newpos # 2) < 0) then { _newpos set [2,0]; };
 
-if(abs ((_newpos # 2) - (_curPos # 2)) < 0.1) then
+private _dropDist = (_curPos # 2) - (_newpos # 2);
+
+// Drop only if little bit above contact pos
+if( _dropDist < 0.1) then
 {
  continue;
 };
