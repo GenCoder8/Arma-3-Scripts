@@ -6,11 +6,15 @@
 
 #define CE_MOVE_ENABLE_KEYS [DIK_LCONTROL,DIK_RCONTROL]
 
+
+
 #define CE_PLACING_HEIGHT_MUL   0.1
 #define CE_PLANING_TILT_MUL 1
 #define CE_PLANING_AWAY_MUL 0.2
 
 #define CE_PLACING_AWAY_FROM  1.5
+
+
 
 #define CE_PLACING_MODE_HEIGHT 0
 #define CE_PLACING_MODE_TILT   1
@@ -18,11 +22,14 @@
 #define CE_MAX_PLACING_MODES   3
 
 
+
 placingCtrlDown = false;
 placingMode = CE_PLACING_MODE_HEIGHT;
 
 
 placingObjType = "Land_PierLadder_F"; // "Land_Plank_01_4m_F";
+
+
 
 ceRegisterInput =
 {
@@ -114,9 +121,9 @@ placingMode = 0;
 
 systemchat format ["placingMode %1", placingMode];
 
-if(placingMode == CE_PLACING_MODE_HEIGHT) then { hint "Changing height"; };
-if(placingMode == CE_PLACING_MODE_TILT) then { hint "Changing tilt"; };
-if(placingMode == CE_PLACING_MODE_AWAY) then { hint "Changing away position"; };
+if(placingMode == CE_PLACING_MODE_HEIGHT) then { hint "Changing Height"; };
+if(placingMode == CE_PLACING_MODE_TILT) then { hint "Changing Tilt"; };
+if(placingMode == CE_PLACING_MODE_AWAY) then { hint "Changing Away Position"; };
 
 };
 
@@ -187,16 +194,14 @@ _finalobj setVectorDirAndUp [vectorDir placingObj,vectorUp placingObj];
 
 _finalobj setposATL (getposATL placingObj);
 
-//_finalobj setdir (getdir placingObj);
-
 
 call ceEndPlacing;
 
 }] call userAddAction;
 
 
-_c = ["Toggle Mode","#ffff66","a3\ui_f\data\gui\cfg\cursors\rotate_gs.paa"] call makeActStr;
-ceToggleAction = [player,_c,{ call ceToggleEditingMode; },"true",3,"User1"] call userAddAction;
+_t = ["Toggle Mode","#ffff66","a3\ui_f\data\gui\cfg\cursors\rotate_gs.paa"] call makeActStr;
+ceToggleAction = [player,_t,{ call ceToggleEditingMode; },"true",3,"User1"] call userAddAction;
 
 
 _c = ["Cancel Placement","#FF0000","a3\ui_f\data\igui\cfg\actions\obsolete\ui_action_cancel_ca.paa"] call makeActStr;
@@ -223,8 +228,8 @@ cePlacingEF = addMissionEventHandler ["EachFrame",
 
 
 
-private _yaw = getdir player; 
-private _pitch = placingTilt; 
+private _yaw = getdir player;
+private _pitch = placingTilt;
 private _roll = 0;
 
 placingObj setVectorDirAndUp [
