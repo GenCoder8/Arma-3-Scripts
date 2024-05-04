@@ -22,6 +22,24 @@
 #define CE_MAX_PLACING_MODES   3
 
 
+if(isServer) then
+{
+
+cePlaceObj =
+{
+params ["_type","_pos","_vdir","_vup"];
+
+private _finalobj = createVehicle [_type, _pos, [], 0, "CAN_COLLIDE"];
+
+_finalobj setVectorDirAndUp [_vdir,_vup];
+
+_finalobj setposATL _pos;
+
+};
+
+};
+
+if(!hasInterface) exitWith {};
 
 placingCtrlDown = false;
 placingMode = CE_PLACING_MODE_HEIGHT;
@@ -188,11 +206,8 @@ _p = ["Place","#00e600","a3\3den\data\displays\display3den\toolbar\redo_ca.paa"]
 
 cePlacingAction = [player,_p,{
 
-private _finalobj = createVehicle [placingObjType, getposATL placingObj, [], 0, "CAN_COLLIDE"];
 
-_finalobj setVectorDirAndUp [vectorDir placingObj,vectorUp placingObj];
-
-_finalobj setposATL (getposATL placingObj);
+[placingObjType,getposATL placingObj,vectorDir placingObj,vectorUp placingObj] remoteExec ["cePlaceObj", 2];
 
 
 call ceEndPlacing;
