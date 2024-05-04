@@ -8,6 +8,13 @@ class CombatEngineerObjs
   object = "Land_PierLadder_F";
  };
 
+ class PlankLadder
+ {
+  name = "Plank and ladder";
+  object = "Land_Obstacle_Climb_F";
+  rotation = 90;
+ };
+
  class PlankShort
  {
   name = "Plank short";
@@ -19,5 +26,8 @@ class CombatEngineerObjs
   name = "Plank long";
   object = "Land_Plank_01_8m_F";
  };
+
+
+
 
 };

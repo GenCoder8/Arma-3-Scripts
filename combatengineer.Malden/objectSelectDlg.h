@@ -1,7 +1,10 @@
 
+#define SELOBJDLG_ID 1238990
+
+
 class SelectObjectDlg
 {
- idd = 1238990;
+ idd = SELOBJDLG_ID;
 
  movingEnable = false;
  

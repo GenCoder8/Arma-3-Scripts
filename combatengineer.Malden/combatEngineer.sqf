@@ -47,6 +47,7 @@ placingMode = CE_PLACING_MODE_HEIGHT;
 
 placingObjType = "Land_PierLadder_F"; // "Land_Plank_01_4m_F";
 
+placingObj = objNull; // Must define for cond
 
 
 ceRegisterInput =
@@ -159,7 +160,7 @@ for "_i" from 0 to (count _ceObjs - 1) do
 {
  private _ceObj = _ceObjs select _i;
 
- _selObjs pushback [getText(_ceObj >> "name"),(getText (_ceObj >> "object"))];
+ _selObjs pushback [getText(_ceObj >> "name"), (getText (_ceObj >> "object")), getNumber(_ceObj >> "rotation")];
 };
 
 [_selObjs,ceStartPlacing] call openSelectObjectDlg;
@@ -170,10 +171,12 @@ for "_i" from 0 to (count _ceObjs - 1) do
 
 ceStartPlacing =
 {
- params ["_placeObjType"];
+ params ["_placeObjType","_rotation"];
 
  placingObjType = _placeObjType;
+ placingObjRotation = _rotation;
 
+ // systemchat format ["placingObjRotation %1 %2 ", _rotation ];
 
 placingZ = 0.5;
 placingTilt = 0;
@@ -243,7 +246,7 @@ cePlacingEF = addMissionEventHandler ["EachFrame",
 
 
 
-private _yaw = getdir player;
+private _yaw = getdir player + placingObjRotation;
 private _pitch = placingTilt;
 private _roll = 0;
 

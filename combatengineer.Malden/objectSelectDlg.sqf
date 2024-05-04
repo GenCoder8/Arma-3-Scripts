@@ -18,13 +18,13 @@ private _display = findDisplay SELOBJDLG_ID;
 private _list = _display displayCtrl 1500;
 
 {
- _x params ["_name","_cfgName"];
+ _x params ["_name","_cfgName","_rotation"];
 
  _list lbadd _name;
 
  private _objCfg = configfile >> "CfgVehicles" >> _cfgName;
 
- selectObjsDlgObjects pushback [_name,_objCfg];
+ selectObjsDlgObjects pushback [_name,_objCfg,_rotation];
 } foreach _selObjs;
 
 private _pic = _display displayCtrl 1200;
@@ -46,7 +46,7 @@ _display = findDisplay SELOBJDLG_ID;
 
  if(_index < 0) exitWith {};
 
- (selectObjsDlgObjects # _index) params ["_name","_objCfg"];
+ (selectObjsDlgObjects # _index) params ["_name","_objCfg","_rotation"];
 
  _pic ctrlShow true;
  _pic ctrlSetText format ["%1",getText (_objCfg >> "editorPreview")];
@@ -66,10 +66,10 @@ selectObjectDlgApply =
  closeDialog 0;
 
 
- selectObjectDlgSelObject params ["_name","_objCfg"];
+ selectObjectDlgSelObject params ["_name","_objCfg","_rotation"];
 
 
- (configname _objCfg) call selectObjectDlgCallback;
+ [(configname _objCfg),_rotation] call selectObjectDlgCallback;
 
 };
 
