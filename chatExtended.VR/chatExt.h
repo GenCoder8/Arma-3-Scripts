@@ -42,12 +42,12 @@ colorBackground[] = {0,0.55,0,1};
 
  };
 	
- class objects 
+ class objects
  {
  };
 	
 	
-class controls 
+class controls
 {
 
 /* #Gunuse
@@ -67,16 +67,34 @@ $[
 
 
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by GC, v1.063, #Gunuse)
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Toqyta)
 ////////////////////////////////////////////////////////
 
-class RscStructuredText_1100: RscStructuredText
+class ChatBox : RscControlsGroup
 {
-	idc = 1100;
+	idc	= 5001;
+
 	x = 15.5 * UI_GRID_W + UI_GRID_X;
 	y = 6 * UI_GRID_H + UI_GRID_Y;
 	w = 32 * UI_GRID_W;
 	h = 22.5 * UI_GRID_H;
+
+	class Controls
+	{
+class ChatMessages : RscStructuredText
+{
+
+ idc = 1100;
+
+x = 0;
+y = 0;
+w = 1;
+h = 1;
+
+};
+
+	};
+
 };
 class RscButton_1600: RscButton
 {
