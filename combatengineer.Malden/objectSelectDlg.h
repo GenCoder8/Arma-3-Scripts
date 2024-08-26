@@ -49,6 +49,8 @@ class RscListbox_1500: RscListbox
 	y = 7.5 * UI_GRID_H + UI_GRID_Y;
 	w = 20 * UI_GRID_W;
 	h = 15 * UI_GRID_H;
+
+sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 20) * 1)";
 };
 class RscButton_1600: RscButton
 {
