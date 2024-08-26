@@ -1,0 +1,17 @@
+
+#include "gridDefines.h"
+
+#include "parent.h"
+
+ #include "chatExt.h"
+
+/*
+class RscTitles
+{
+ titles[]={ChatExtended}; 
+   
+ #include "chatExt.h"
+};
+
+
+*/

@@ -1,0 +1,2 @@
+
+execvm "chatExt.sqf";
