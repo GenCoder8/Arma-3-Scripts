@@ -21,7 +21,8 @@ class ChatExtendedDlg
 // duration = 1e10;
 
 //onLoad = "uiNamespace setVariable ['ChatExtOverlay', _this select 0];";
-//onUnload = "uiNamespace setVariable ['ChatExtOverlay', displayNull];";
+ 
+ onUnload = "call chatExtClose";
 
 
  class controlsBackground 
@@ -50,7 +51,7 @@ class Background : IGUIBack
 class controls
 {
 
-/* #Gunuse
+/* #Kulyfi
 $[
 	1.063,
 	["chatExt",[["safezoneX","safezoneY","0","0"],"2.5 * pixelW * pixelGrid","2.5 * pixelH * pixelGrid","UI_GRID"],0,0,0],
@@ -58,9 +59,11 @@ $[
 	[1600,"",[2,"Close",["42.5 * UI_GRID_W + UI_GRID_X","29 * UI_GRID_H + UI_GRID_Y","5 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |closeDialog 0|;"]],
 	[1601,"",[2,"Side",["43 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","4 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |1 call chatExtSwitchToChannel|;"]],
 	[1602,"",[2,"Global",["37.5 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","4 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["action = |0 call chatExtSwitchToChannel|;"]],
-	[1000,"",[2,"Current channel text",["16.5 * UI_GRID_W + UI_GRID_X","3.5 * UI_GRID_H + UI_GRID_Y","11 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+	[1000,"",[2,"Current channel text",["16.5 * UI_GRID_W + UI_GRID_X","3.5 * UI_GRID_H + UI_GRID_Y","11 * UI_GRID_W","2 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1900,"",[2,"",["27 * UI_GRID_W + UI_GRID_X","3 * UI_GRID_H + UI_GRID_Y","9 * UI_GRID_W","2.5 * UI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["onSliderPosChanged = |_this call chatExtTransparency|;"]]
 ]
 */
+
 
 
 
@@ -96,6 +99,12 @@ h = 1;
 	};
 
 };
+
+////////////////////////////////////////////////////////
+// GUI EDITOR OUTPUT START (by GC, v1.063, #Kulyfi)
+////////////////////////////////////////////////////////
+
+
 class RscButton_1600: RscButton
 {
 	action = "closeDialog 0";
@@ -137,6 +146,16 @@ class RscText_1000: RscText
 	y = 3.5 * UI_GRID_H + UI_GRID_Y;
 	w = 11 * UI_GRID_W;
 	h = 2 * UI_GRID_H;
+};
+class RscSlider_1900: RscSlider
+{
+	onSliderPosChanged = "_this call chatExtTransparency";
+
+	idc = 1900;
+	x = 27 * UI_GRID_W + UI_GRID_X;
+	y = 3 * UI_GRID_H + UI_GRID_Y;
+	w = 9 * UI_GRID_W;
+	h = 2.5 * UI_GRID_H;
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END

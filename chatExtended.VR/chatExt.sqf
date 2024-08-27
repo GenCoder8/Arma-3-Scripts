@@ -3,6 +3,7 @@
 
 chatMessages = [];
 chatChannel = 0;
+chatAlpha = 1;
 
 addMissionEventHandler ["HandleChatMessage",
 {
@@ -45,6 +46,18 @@ private _frame = _display ctrlCreate ["RscFrame", 5002];
 _frame ctrlSetPosition _chatAreaSize;
 _frame ctrlCommit 0;
 
+
+
+private _transparency = _display displayCtrl 1900;
+
+
+_transparency sliderSetRange [0, 1];
+
+// Must set these both
+_transparency sliderSetPosition chatAlpha;
+[_transparency, chatAlpha] call chatExtTransparency;
+
+
  //test code
 /*
 for "_i" from 0 to 55 do
@@ -53,6 +66,17 @@ chatMessages pushback [0,"tester", "#ffff00", "Test " + (str _i) + ", test messa
 };*/
 
  chatChannel call chatExtLoadMessages;
+};
+
+chatExtClose =
+{
+
+private _display = findDisplay CHATEXTDLGID;
+
+private _transparency = _display displayCtrl 1900;
+
+chatAlpha = sliderPosition _transparency;
+ 
 };
 
 chatExtLoadMessages =
@@ -113,9 +137,37 @@ chatExtSwitchToChannel =
  _channel call chatExtLoadMessages;
 };
 
-sleep 0.01;
+chatExtTransparency =
+{
+ params ["","_alpha"];
 
-waituntil { ! isnull (findDisplay 46) };
 
-call chatExtOpen;
+private _display = findDisplay CHATEXTDLGID;
+
+
+_transparentControls = [3700];
+
+_ctrls = missionConfigFile >> "ChatExtendedDlg" >> "controls";
+ 
+for "_c" from 0 to (count _ctrls - 1) do
+{
+ _ctrlCfg = _ctrls select _c;
+
+ if((configname (inheritsFrom _ctrlCfg)) != "RscButton") then { continue; };
+
+ _transparentControls pushback (getNumber (_ctrlCfg >> "idc"));
+
+};
+
+{
+ private _ctrl = _display displayCtrl _x;
+
+_col = ctrlBackgroundColor _ctrl;
+_col set [3, _alpha];
+
+_ctrl ctrlSetBackgroundColor _col;
+} foreach _transparentControls;
+
+};
+
 

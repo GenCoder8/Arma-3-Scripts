@@ -13,4 +13,12 @@ getSideIndex =
 };
 
 
-execvm "chatExt.sqf";
+_h = execvm "chatExt.sqf";
+
+waituntil { scriptdone _h };
+
+sleep 0.01;
+
+waituntil { ! isnull (findDisplay 46) };
+
+call chatExtOpen;
