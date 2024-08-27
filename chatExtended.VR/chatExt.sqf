@@ -1,9 +1,9 @@
 
 #define CHATEXTDLGID 1234511
 
-chatMessages = [];
-chatChannel = 0;
-chatAlpha = 1;
+chatExtMessages = [];
+chatExtChannel = 0;
+chatExtAlpha = 1;
 
 addMissionEventHandler ["HandleChatMessage",
 {
@@ -21,7 +21,7 @@ if(_channel in [0,1]) then
 
  private _color = ["#800000","#004C99","#008000","#660080"] select _sideIndex;
 
- chatMessages pushback [_channel,_name,_color,_text];
+ chatExtMessages pushback [_channel,_name,_color,_text];
 
  _channel call chatExtLoadMessages;
 };
@@ -54,18 +54,18 @@ private _transparency = _display displayCtrl 1900;
 _transparency sliderSetRange [0, 1];
 
 // Must set these both
-_transparency sliderSetPosition chatAlpha;
-[_transparency, chatAlpha] call chatExtTransparency;
+_transparency sliderSetPosition chatExtAlpha;
+[_transparency, chatExtAlpha] call chatExtTransparency;
 
 
  //test code
 /*
 for "_i" from 0 to 55 do
 {
-chatMessages pushback [0,"tester", "#ffff00", "Test " + (str _i) + ", test message string...." ];
+chatExtMessages pushback [0,"tester", "#ffff00", "Test " + (str _i) + ", test message string...." ];
 };*/
 
- chatChannel call chatExtLoadMessages;
+ chatExtChannel call chatExtLoadMessages;
 };
 
 chatExtClose =
@@ -75,7 +75,7 @@ private _display = findDisplay CHATEXTDLGID;
 
 private _transparency = _display displayCtrl 1900;
 
-chatAlpha = sliderPosition _transparency;
+chatExtAlpha = sliderPosition _transparency;
  
 };
 
@@ -83,7 +83,7 @@ chatExtLoadMessages =
 {
  params ["_loadChannel"];
 
- chatChannel = _loadChannel;
+ chatExtChannel = _loadChannel;
 
 private _display = findDisplay CHATEXTDLGID;
 
@@ -103,7 +103,7 @@ private _chatStr = "";
  if(_loadChannel != _channel) then { continue; };
 
  _chatStr = _chatStr + (format["<t color='%2'>%1</t> ", _name, _color]) + _text + "<br/>";
-} foreach chatMessages;
+} foreach chatExtMessages;
 
 _chatMessages ctrlSetStructuredText parseText _chatStr;
 
