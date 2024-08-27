@@ -145,13 +145,14 @@ chatExtTransparency =
 private _display = findDisplay CHATEXTDLGID;
 
 
-_transparentControls = [3700];
+private _transparentControls = [3700];
 
-_ctrls = missionConfigFile >> "ChatExtendedDlg" >> "controls";
+// Select buttons
+private _ctrlCfgs = missionConfigFile >> "ChatExtendedDlg" >> "controls";
  
-for "_c" from 0 to (count _ctrls - 1) do
+for "_c" from 0 to (count _ctrlCfgs - 1) do
 {
- _ctrlCfg = _ctrls select _c;
+ _ctrlCfg = _ctrlCfgs select _c;
 
  if((configname (inheritsFrom _ctrlCfg)) != "RscButton") then { continue; };
 
@@ -159,6 +160,7 @@ for "_c" from 0 to (count _ctrls - 1) do
 
 };
 
+// Apply alpha to controls
 {
  private _ctrl = _display displayCtrl _x;
 
