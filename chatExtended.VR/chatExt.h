@@ -78,28 +78,29 @@ $[
 
 class ChatBox : RscControlsGroup
 {
-	idc	= 5001;
+idc	= 5001;
 
-	x = 16 * UI_GRID_W + UI_GRID_X;
-	y = 7 * UI_GRID_H + UI_GRID_Y;
-	w = 31.5 * UI_GRID_W;
-	h = 22 * UI_GRID_H;
+x = 16 * UI_GRID_W + UI_GRID_X;
+y = 7 * UI_GRID_H + UI_GRID_Y;
+w = 31.5 * UI_GRID_W;
+h = 22 * UI_GRID_H;
 
-	class Controls
-	{
+class Controls
+{
+
 class ChatMessages : RscStructuredText
 {
 
  idc = 1100;
 
-x = 0;
-y = 0;
-w = 1;
-h = 1;
+ x = 0;
+ y = 0;
+ w = 1;
+ h = 1;
 
 };
 
-	};
+};
 
 };
 

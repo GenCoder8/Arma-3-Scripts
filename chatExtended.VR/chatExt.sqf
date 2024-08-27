@@ -1,25 +1,30 @@
 
 #define CHATEXTDLGID 1234511
 
+#define CHAT_USER_COLORS ["#800000","#004C99","#008000","#660080"]
+
 chatExtMessages = [];
 chatExtChannel = 0;
 chatExtAlpha = 1;
+
 
 addMissionEventHandler ["HandleChatMessage",
 {
  params ["_channel", "_owner", "_from", "_text", "_person", "_name", "_strID", "_forcedDisplay", "_isPlayerMessage", "_sentenceType", "_chatMessageType", "_params"];
 
-// hint format ["channel %1 %2", _channel, _isPlayerMessage];
 
 if(_channel in [0,1]) then
 {
+ // hint format ["channel %1 %2", _channel, _isPlayerMessage];
+
+
  private _side = side (group _person);
 
  private _sideIndex = _side call getSideIndex;
 
  if(_sideIndex < 0 || _sideIndex > 3) exitWith {};
 
- private _color = ["#800000","#004C99","#008000","#660080"] select _sideIndex;
+ private _color = CHAT_USER_COLORS select _sideIndex;
 
  chatExtMessages pushback [_channel,_name,_color,_text];
 
@@ -28,6 +33,7 @@ if(_channel in [0,1]) then
 
  false
 }];
+
 
 
 chatExtOpen =
@@ -148,7 +154,7 @@ private _display = findDisplay CHATEXTDLGID;
 private _transparentControls = [3700];
 
 // Select buttons
-private _ctrlCfgs = missionConfigFile >> "ChatExtendedDlg" >> "controls";
+private _ctrlCfgs = missionConfigFile >> "ChatExtendedDlg" >> "Controls";
  
 for "_c" from 0 to (count _ctrlCfgs - 1) do
 {
@@ -164,10 +170,10 @@ for "_c" from 0 to (count _ctrlCfgs - 1) do
 {
  private _ctrl = _display displayCtrl _x;
 
-_col = ctrlBackgroundColor _ctrl;
-_col set [3, _alpha];
+private _color = ctrlBackgroundColor _ctrl;
+_color set [3, _alpha];
 
-_ctrl ctrlSetBackgroundColor _col;
+_ctrl ctrlSetBackgroundColor _color;
 } foreach _transparentControls;
 
 };
