@@ -20,7 +20,7 @@ if(_channel in [0,1]) then
 
  private _color = ["#800000","#004C99","#008000","#660080"] select _sideIndex;
 
- chatMessages pushback [_channel,_name,_text,_color];
+ chatMessages pushback [_channel,_name,_color,_text];
 
  _channel call chatExtLoadMessages;
 };
@@ -35,10 +35,21 @@ createDialog "ChatExtendedDlg";
 
 private _display = findDisplay CHATEXTDLGID;
 
-/* test code
+
+
+private _chatBox = _display displayCtrl 5001;
+private _chatAreaSize = ctrlPosition _chatBox;
+
+private _frame = _display ctrlCreate ["RscFrame", 5002];
+
+_frame ctrlSetPosition _chatAreaSize;
+_frame ctrlCommit 0;
+
+ //test code
+/*
 for "_i" from 0 to 55 do
 {
-chatMessages pushback [0,"tester", "Test " + (str _i) + ", test message string...." ];
+chatMessages pushback [0,"tester", "#ffff00", "Test " + (str _i) + ", test message string...." ];
 };*/
 
  chatChannel call chatExtLoadMessages;
@@ -63,7 +74,7 @@ private _chatMessages = _display displayCtrl 1100;
 private _chatStr = "";
 
 {
- _x params ["_channel","_name","_text","_color"];
+ _x params ["_channel","_name","_color","_text"];
 
  if(_loadChannel != _channel) then { continue; };
 
