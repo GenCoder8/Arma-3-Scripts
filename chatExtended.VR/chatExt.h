@@ -27,18 +27,18 @@ class ChatExtendedDlg
  class controlsBackground 
  {
  
- 	class Background : IGUIBack
-    {
-	idc = 3700;
+class Background : IGUIBack
+{
+ idc = 3700;
 
-	text = "#(argb,8,8,3)color(1,1,1,1)";
-	x = 15 * UI_GRID_W + UI_GRID_X;
-	y = 5.5 * UI_GRID_H + UI_GRID_Y;
-	w = 33 * UI_GRID_W;
-	h = 25 * UI_GRID_H;
+ text = "#(argb,8,8,3)color(1,1,1,1)";
+ x = 15 * UI_GRID_W + UI_GRID_X;
+ y = 5.5 * UI_GRID_H + UI_GRID_Y;
+ w = 33 * UI_GRID_W;
+ h = 25 * UI_GRID_H;
 
-colorBackground[] = {0,0.55,0,1};
-    };
+ colorBackground[] = {179/255, 179/255, 179/255,1};
+ };
 
  };
 	

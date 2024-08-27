@@ -12,7 +12,15 @@ addMissionEventHandler ["HandleChatMessage",
 
 if(_channel in [0,1]) then
 {
- chatMessages pushback [_channel,_name,_text];
+ private _side = side (group _person);
+
+ private _sideIndex = _side call getSideIndex;
+
+ if(_sideIndex < 0 || _sideIndex > 3) exitWith {};
+
+ private _color = ["#800000","#004C99","#008000","#660080"] select _sideIndex;
+
+ chatMessages pushback [_channel,_name,_text,_color];
 
  _channel call chatExtLoadMessages;
 };
@@ -55,16 +63,16 @@ private _chatMessages = _display displayCtrl 1100;
 private _chatStr = "";
 
 {
- _x params ["_channel","_name","_text"];
+ _x params ["_channel","_name","_text","_color"];
 
  if(_loadChannel != _channel) then { continue; };
 
- _chatStr = _chatStr + _name + ": " + _text + "<br/>";
+ _chatStr = _chatStr + (format["<t color='%2'>%1</t> ", _name, _color]) + _text + "<br/>";
 } foreach chatMessages;
 
 _chatMessages ctrlSetStructuredText parseText _chatStr;
 
-_h = ctrlTextHeight _chatMessages;
+private _h = ctrlTextHeight _chatMessages;
 _chatMessages ctrlSetPosition [0,0, 0.9, _h];
 _chatMessages ctrlCommit 0;
 
