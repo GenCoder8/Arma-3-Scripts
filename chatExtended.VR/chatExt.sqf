@@ -7,16 +7,11 @@ chatExtMessages = [];
 chatExtChannel = 0;
 chatExtAlpha = 1;
 
-
-addMissionEventHandler ["HandleChatMessage",
+chatExtProcessChatMsg =
 {
- params ["_channel", "_owner", "_from", "_text", "_person", "_name", "_strID", "_forcedDisplay", "_isPlayerMessage", "_sentenceType", "_chatMessageType", "_params"];
+ params ["_array","_channel", "_owner", "_from", "_text", "_person", "_name", "_strID", "_forcedDisplay", "_isPlayerMessage", "_sentenceType", "_chatMessageType", "_params"];
 
-
-if(_channel in [0,1]) then
-{
- // hint format ["channel %1 %2", _channel, _isPlayerMessage];
-
+ if(!(_channel in [0,1])) exitwith {};
 
  private _side = side (group _person);
 
@@ -26,13 +21,120 @@ if(_channel in [0,1]) then
 
  private _color = CHAT_USER_COLORS select _sideIndex;
 
+ _array pushback [_channel,_name,_color,_text];
+};
+
+if(isServer) then
+{
+
+chatExtSideMessages = createHashmap;
+
+addMissionEventHandler ["HandleChatMessage",
+{
+ params ["_channel", "_owner", "_from", "_text", "_person", "_name", "_strID", "_forcedDisplay", "_isPlayerMessage", "_sentenceType", "_chatMessageType", "_params"];
+
+ diag_log "Server HandleChatMessage called";
+
+ private _side = side (group _person);
+
+ diag_log format ["Server HandleChatMessage %1 %2",_channel,_side];
+
+ if(_channel == 0) then
+ {
+ _side = sideLogic;
+ };
+
+ private _msgArray = chatExtSideMessages getOrDefault [_side,[],true];
+
+ ([_msgArray] + _this) call chatExtProcessChatMsg;
+
+ diag_log format ["_msgArray now %1", _msgArray];
+}];
+
+
+
+
+addMissionEventHandler ["PlayerConnected",
+{
+params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
+
+[_name] spawn
+{
+params ["_name"];
+
+private _player = objNull;
+
+waituntil { sleep 0.01; _player = _name call getPlayerObj; !isnull _player };
+
+ private _side = side (group _player);
+
+diag_log format ["PlayerConnected> %1 %2", _player, _side];
+
+
+ private _msgs = (chatExtSideMessages getOrDefault [sideLogic, []]) + (chatExtSideMessages getOrDefault [_side, []]);
+
+[_msgs] remoteExecCall ["chatExtReceiveMsgs",_player];
+
+};
+
+}];
+
+
+
+/*
+addMissionEventHandler ["OnUserSelectedPlayer",
+{
+ params ["_networkId", "_playerObject", "_attempts"];
+
+diag_log "USER SELECTED";
+
+
+
+}];
+*/
+};
+
+if(hasInterface) then
+{
+addMissionEventHandler ["HandleChatMessage",
+{
+ params ["_channel", "_owner", "_from", "_text", "_person", "_name", "_strID", "_forcedDisplay", "_isPlayerMessage", "_sentenceType", "_chatMessageType", "_params"];
+
+
+if(_channel in [0,1]) then
+{
+ // hint format ["channel %1 %2 %3 %4", time, _channel, _isPlayerMessage,_forcedDisplay];
+
+
+/*
+ private _side = side (group _person);
+
+ private _sideIndex = _side call getSideIndex;
+
+ if(_sideIndex < 0 || _sideIndex > 3) exitWith {};
+
+ private _color = CHAT_USER_COLORS select _sideIndex;
+
  chatExtMessages pushback [_channel,_name,_color,_text];
+*/
+
+ ([chatExtMessages] + _this) call chatExtProcessChatMsg;
 
  _channel call chatExtLoadMessages;
 };
 
  false
 }];
+
+chatExtReceiveMsgs =
+{
+params ["_msgs"];
+
+diag_log format ["chatExtReceiveMsgs %1", _msgs ];
+
+chatExtMessages = _msgs + chatExtMessages;
+
+};
 
 
 
@@ -158,7 +260,7 @@ private _ctrlCfgs = missionConfigFile >> "ChatExtendedDlg" >> "Controls";
  
 for "_c" from 0 to (count _ctrlCfgs - 1) do
 {
- _ctrlCfg = _ctrlCfgs select _c;
+ private _ctrlCfg = _ctrlCfgs select _c;
 
  if((configname (inheritsFrom _ctrlCfg)) != "RscButton") then { continue; };
 
@@ -178,4 +280,6 @@ _ctrl ctrlSetBackgroundColor _color;
 
 };
 
+
+};
 

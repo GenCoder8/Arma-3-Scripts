@@ -5,6 +5,24 @@
 
  #include "chatExt.h"
 
+
+class CfgFunctions
+{
+ class ChatExt
+ {
+  class StartFns
+  {
+
+   class ChatExtMain
+   {
+    file = "chatExt.sqf";
+	preInit = 1; // Run at mission start
+    recompile = 1;
+   };
+};
+};
+};
+
 /*
 class RscTitles
 {

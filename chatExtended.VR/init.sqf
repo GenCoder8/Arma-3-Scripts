@@ -12,10 +12,22 @@ getSideIndex =
  };
 };
 
+getPlayerObj =
+{
+ params ["_proName"];
+ private _ret = objNull;
+ 
+ {
+  if((name _x) == _proName) exitWith { _ret = _x; };
+ } forEach allplayers;
 
-_h = execvm "chatExt.sqf";
+ _ret
+};
 
-waituntil { scriptdone _h };
+
+//_h = execvm "chatExt.sqf";
+
+//waituntil { scriptdone _h };
 
 sleep 0.01;
 
