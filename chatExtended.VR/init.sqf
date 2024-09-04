@@ -14,11 +14,11 @@ getSideIndex =
 
 getPlayerObj =
 {
- params ["_proName"];
+ params ["_uid"];
  private _ret = objNull;
  
  {
-  if((name _x) == _proName) exitWith { _ret = _x; };
+  if((getPlayerUID _x) == _uid) exitWith { _ret = _x; };
  } forEach allplayers;
 
  _ret

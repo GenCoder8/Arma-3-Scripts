@@ -10,7 +10,7 @@ class CfgFunctions
 {
  class ChatExt
  {
-  class StartFns
+  class ScriptFns
   {
 
    class ChatExtMain

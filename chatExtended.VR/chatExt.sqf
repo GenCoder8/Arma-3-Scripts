@@ -58,22 +58,27 @@ addMissionEventHandler ["PlayerConnected",
 {
 params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
 
-[_name] spawn
+[_uid] spawn
 {
-params ["_name"];
+params ["_uid"];
+
+diag_log format ["PlayerConnected step 1 > %1 %2", _uid];
+
 
 private _player = objNull;
 
-waituntil { sleep 0.01; _player = _name call getPlayerObj; !isnull _player };
+waituntil { sleep 0.01; _player = _uid call getPlayerObj; !isnull _player };
 
  private _side = side (group _player);
 
-diag_log format ["PlayerConnected> %1 %2", _player, _side];
+diag_log format ["PlayerConnected step 2 > %1 %2", _player, _side];
 
+
+// _array select [count _array - 200];
 
  private _msgs = (chatExtSideMessages getOrDefault [sideLogic, []]) + (chatExtSideMessages getOrDefault [_side, []]);
 
-[_msgs] remoteExecCall ["chatExtReceiveMsgs",_player];
+/// [_msgs] remoteExecCall ["chatExtReceiveMsgs",_player];
 
 };
 
@@ -100,6 +105,7 @@ addMissionEventHandler ["HandleChatMessage",
 {
  params ["_channel", "_owner", "_from", "_text", "_person", "_name", "_strID", "_forcedDisplay", "_isPlayerMessage", "_sentenceType", "_chatMessageType", "_params"];
 
+// TODO SIDE
 
 if(_channel in [0,1]) then
 {
@@ -132,7 +138,22 @@ params ["_msgs"];
 
 diag_log format ["chatExtReceiveMsgs %1", _msgs ];
 
-chatExtMessages = _msgs + chatExtMessages;
+// Get new messages
+private _newMsgs = _msgs select
+{
+ _x params ["_channel","_name","_color","_text"];
+
+ private _fi = chatExtMessages findIf
+ {
+  _x params ["_echannel","_eName","_ecolor","_eText"];
+  (_name == _eName && _text == _eText)
+ };
+
+ // is new?
+ _fi < 0
+};
+
+chatExtMessages insert [0, _newMsgs];
 
 };
 
