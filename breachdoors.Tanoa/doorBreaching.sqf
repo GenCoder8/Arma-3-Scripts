@@ -4,14 +4,16 @@
 
 #define MAX_DOOR_OPEN_DIST 2.5
 
-#define MAX_DOOR_DAMAGE 15
+#define MAX_DOOR_DAMAGE 25
+
+#define DOOR_KICK_DAMAGE (ceil (random (MAX_DOOR_DAMAGE * 2)))
 
 #define DOOR_LOCKED   1
 #define DOOR_UNLOCKED 0
 
 
 #define BREACHING_DEBUG true
-#define BREACHING_LOG   false
+#define BREACHING_LOG   true
 
 
 dbDebug =
@@ -145,7 +147,7 @@ for "_i" from 1 to _numDoors do
 [_bldg,"<t color='#003366'>[Kick door]</t>",
 {
  params ["_target", "_caller", "_actionId", "_arguments"];
- (_arguments+[ceil (random (MAX_DOOR_DAMAGE * 2))]) call damageDoor;
+ (_arguments+[DOOR_KICK_DAMAGE]) call damageDoor;
  hint "You kicked the door";
  player setVariable['lastKickTime',time];
 },
@@ -156,8 +158,8 @@ for "_i" from 1 to _numDoors do
 // Should only trigger on shooters PC
 _bldg addEventHandler ["HitPart", 
 {
+_hitParts = _this;
 
-//diag_log "((HIT))";
 
 {
 _x params ["_bldg", "_shooter", "_projectile", "_position", "_velocity", "_selection", "_ammo", "_vector", "_radius", "_surfaceType", "_isDirect"];
@@ -167,7 +169,7 @@ _x params ["_bldg", "_shooter", "_projectile", "_position", "_velocity", "_selec
 
 if(BREACHING_LOG) then
 {
-diag_log format [">>> %1 -- %2 -- %3", _ammo,_radius,_isDirect];
+//diag_log format [">>> %1 -- %2 -- %3 Sel: %4", _ammo,_radius,_isDirect,_selection];
 };
 
 _hit = _ammo # 0;
@@ -177,7 +179,7 @@ _range = _ammo # 2;
 if(!_isDirect) then
 {
  _hit = _ammo # 1;
- _range = _range / 4;
+ _range = _range / 100;
 };
 
 //if(_isDirect || (_ammoName call isAmmoBomb)) then
@@ -190,21 +192,68 @@ if(count _selection > 0 && _hit >= 0) then
 
 if(BREACHING_LOG) then
 {
-diag_log format ["_selection %1 ", _selection];
+//diag_log format ["_selection %1 - %2 %3", _selection,_hit, _range];
 };
 
 _sel = (_selection # 0);
 if("door" in (tolower _sel)) then
 {
 
-private _pos = _bldg selectionPosition format ["%1", _sel];
+private _pos = _bldg selectionPosition format ["%1_trigger", _sel];
 private _doorpos = _bldg modelToWorld _pos;
-private _dp = ASLToAGL _position; // getposATL _projectile;
+private _dp = ASLToAGL _position;
 private _distToExplosion = (getposATL _projectile) distance _doorpos; // _doorpos distance (_bldg modelToWorld _dp);
+
+private _distToExplosion2 = _dp distance _doorpos;
+
+// Gun: 2
+// Tank cannon: 2
+// Tank mg 2
+// Grenade: 1
+// Claymore: 1
+// GMG: 1
+
+_ammoCfg = configfile >> "CfgAmmo" >> _ammoName;
+
 
 if(BREACHING_LOG) then
 {
-diag_log format ["POS: %1 -- %2 -- %3 -- %4",_dp,_doorpos,getposATL _projectile,getposATL player];
+ diag_log format ["BHIT: %1 : %2 : isD: %3 Pro: %4 -- %5 <> %6 Exp: %7",_sel,_ammoName,_isDirect,_projectile,_distToExplosion,_distToExplosion2, getNumber (_ammoCfg >> "explosive")];
+ 
+//diag_log format [">> %1 %2", (round (_bldg distance _projectile)) > 1000, (_bldg distance (ASLToAGL _position)) ];
+
+//diag_log format [">> %1 %2",  _projectile, _position ];
+
+};
+
+
+_distToExplosion = 0;
+
+if(_isDirect) then
+{
+}
+else
+{
+
+if(getNumber (_ammoCfg >> "explosive") == 1) then
+{
+ _distToExplosion = (getposATL _projectile) distance _doorpos;
+}
+else
+{
+ _distToExplosion = _dp distance _doorpos;
+};
+
+if(_distToExplosion > 1000) then
+{
+ systemchat "ERROR, HIT DIST TOO FAR";
+};
+
+};
+
+if(BREACHING_LOG) then
+{
+//diag_log format ["POS: %1 -- %2 -- %3 <> %4 Exp: %5",_dp,_doorpos,_distToExplosion,_distToExplosion2, getNumber (_ammoCfg >> "explosive")];
 };
 
 
@@ -212,9 +261,20 @@ _hitMul = 1;
 
 if(!_isDirect) then
 {
-if(_distToExplosion > 0) then
+
+#define DOOR_SIZE 1.5
+
+if(_distToExplosion > DOOR_SIZE) then // Count splash damage on if outside the door
 {
-_hitMul = _range / _distToExplosion;
+
+_smallestDist = _distToExplosion;
+
+if(_smallestDist == 0) then // doesnt happen
+{
+ _smallestDist = 0.001;
+};
+
+_hitMul = (_range + DOOR_SIZE) / (_smallestDist);
 if(_hitMul > 1) then
 {
 _hitMul = 1;
@@ -224,7 +284,7 @@ _hitMul = 1;
 
 if(BREACHING_LOG) then
 {
-diag_log format["damage is %1 %2 %3 (%4)", _sel, _distToExplosion, _hitMul, (_bldg modelToWorld _position) distance player, _hit];
+//diag_log format["damage is '%1' %2 <%3> (%4)", _sel, _distToExplosion, _hitMul, (_bldg modelToWorld _position) distance player, _hit];
 };
 
 //if(_distToExplosion < MAX_DOOR_OPEN_DIST) then
@@ -239,7 +299,7 @@ if(_hitMul > 0.1) then
 
 };
  
-} foreach _this;
+} foreach _hitParts;
 
 }];
 
@@ -321,10 +381,10 @@ _doorFrontPos = [];
 _distFromDoor = 0.05;
 _tryAngle = _doorAngle + _x;
 
-_x = sin _tryAngle * _distFromDoor;
-_y = cos _tryAngle * _distFromDoor;
+_dx = sin _tryAngle * _distFromDoor;
+_dy = cos _tryAngle * _distFromDoor;
 
-_vec = [_x,_y,0];
+_vec = [_dx,_dy,0];
 
 _checkPos = _posTrigger vectorAdd _vec;
 
